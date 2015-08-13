@@ -1,0 +1,45 @@
+# Composer files
+/vendor
+composer.phar
+
+# Node files
+node_modules
+npm-debug.log
+
+# Vagrant files
+.vagrant
+*.box
+
+# Sass cache & map files
+.sass-cache
+.map
+
+# Global/Temp.gitignore
+*~
+*.swp
+
+# Global/OSX.gitignore
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Global/Windows.gitignore
+Thumbs.db
+Desktop.ini
+
+# NetBeans project files
+nbproject/*
+
+# IntelliJ IDEA project files
+.idea
+*.iml
+
+# Eclipse/Aptana/Zend Studio project files
+.project
+.buildpath
+.settings
