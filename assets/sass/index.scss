@@ -1,0 +1,267 @@
+$themeRed: #BC0F0F;
+$themeBlue: #1616DB;
+
+@mixin bg-gradient ($from, $to) {
+    background: $to; /* Old browsers */
+    background: -moz-linear-gradient(top, $from 0%, $to 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $from), color-stop(100%, $to)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $from 0%, $to 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $from 0%, $to 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $from 0%, $to 100%); /* IE10+ */
+    background: linear-gradient(to bottom, $from 0%, $to 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$from', endColorstr='$to', GradientType=0); /* IE6-9 */
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.navbar {
+    height: 70px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    @include bg-gradient(#262b32, #141414);
+
+    ul {
+        margin-right: 30px;
+    }
+
+    li {
+        height: 70px !important;
+        line-height: 70px;
+    }
+
+    .navbar-brand {
+        img {
+            height: 30px;
+            margin-top: 5px;
+            margin-left: 20px;
+        }
+    }
+
+    a {
+        font-size: 13px;
+    }
+
+    li.current {
+        transform: skewX(-20deg);
+        -webkit-transform: skewX(-20deg);
+        -ms-transform: skewX(-20deg);
+
+        &.bg-red {
+            @include bg-gradient($themeRed, #570a0a);
+        }
+
+        &.bg-blue {
+            @include bg-gradient($themeBlue, #12125b);
+        }
+
+        a {
+            color: #cacaca !important;
+            transform: skewX(20deg);
+            -webkit-transform: skewX(20deg);
+            -ms-transform: skewX(20deg);
+        }
+    }
+}
+
+.products-nav {
+    background-color: #252525;
+
+    a {
+        color: white;
+        &:hover {
+            color: $themeRed;
+            background-color: #B4B4B4 !important;
+        }
+    }
+}
+
+#about-us-slides {
+    .item {
+        position: relative;
+    }
+
+    .carousel-content-left {
+        position: absolute;
+        top: 0;
+        width: 25%;
+        height: 100%;
+        padding: 10px 30px 10px 10px;
+        display: none;
+
+        background: -moz-linear-gradient(left,  rgba(0,0,0,1) 0%, rgba(0,0,0,1) 91%, rgba(0,0,0,0.3) 96%, rgba(0,0,0,0.08) 99%, rgba(0,0,0,0) 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,1)), color-stop(91%,rgba(0,0,0,1)), color-stop(96%,rgba(0,0,0,0.3)), color-stop(99%,rgba(0,0,0,0.08)), color-stop(100%,rgba(0,0,0,0)));
+        background: -webkit-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 91%,rgba(0,0,0,0.3) 96%,rgba(0,0,0,0.08) 99%,rgba(0,0,0,0) 100%);
+        background: -o-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 91%,rgba(0,0,0,0.3) 96%,rgba(0,0,0,0.08) 99%,rgba(0,0,0,0) 100%);
+        background: -ms-linear-gradient(left,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 91%,rgba(0,0,0,0.3) 96%,rgba(0,0,0,0.08) 99%,rgba(0,0,0,0) 100%);
+        background: linear-gradient(to right,  rgba(0,0,0,1) 0%,rgba(0,0,0,1) 91%,rgba(0,0,0,0.3) 96%,rgba(0,0,0,0.08) 99%,rgba(0,0,0,0) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=1 );
+
+        * {
+            color: white;
+            width: 100%;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+    }
+
+    .carousel-control {
+        .glyphicon {
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            font-size: 17px;
+            width: 120px;
+            height: 60px;
+            line-height: 60px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: left .5s;
+
+            &.glyphicon-chevron-left {
+                text-indent: 90px;
+                left: -75px;
+            }
+
+            &.glyphicon-chevron-right {
+                text-indent: -90px;
+                left: 145px;
+            }
+        }
+
+        &:hover {
+            .glyphicon {
+                &.glyphicon-chevron-left {
+                    left: -60px;
+                }
+
+                &.glyphicon-chevron-right {
+                    left: 130px;
+                }
+            }
+        }
+    }
+
+    .carousel-caption {
+        h3 {
+            padding: 20px;
+            margin-bottom: 5px;
+            width: inherit;
+        }
+        h4 {
+            background-color: rgba(121, 12, 12, 0.7);
+            padding: 20px;
+        }
+        .bg-red {
+            background-color: rgba(121, 12, 12, 0.7);
+        }
+
+    }
+}
+
+.products-items {
+    .item {
+        position: relative;
+        padding: 3px;
+    }
+
+    .item-image {
+        img {
+            width: 100%;
+        }
+    }
+
+    .item-title {
+        padding: 10px 0;
+        text-align: center;
+        background-color: white;
+    }
+
+    .btn-more {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+#product-modal {
+    .modal-content {
+        border: none;
+    }
+
+    .product-title {
+        background-color: #ededed;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .product-details {
+        padding: 10px 20px;
+        background-color: #ededed;
+        text-align: justify;
+        text-justify: inter-ideograph;
+        text-indent: 4em;
+    }
+
+    .product-image {
+        padding: 0 0 0 5px;
+    }
+
+    .btn-close {
+        position: absolute;
+        border: none;
+        width: 40px;
+        height: 40px;
+        right: -5px;
+        top: 0;
+        padding: 0;
+        text-align: center;
+        border-radius: 0;
+    }
+}
+
+.contact-us {
+    background: url("/public/img/bg-form.jpg") no-repeat;
+    -moz-background-size:cover;
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    border-top: 1px solid #666;
+
+    .contact-form {
+        margin: 20px 60px 0 60px;
+        padding: 30px 140px 260px 140px;
+    }
+
+    .form-group {
+        padding: 3px;
+    }
+
+    input, textarea {
+        line-height: 25px;
+        font-style: italic;
+        height: 50px;
+        border-radius: 0;
+        font-size: 14px;
+    }
+
+    .btn-submit {
+        width: 100%;
+        height: 50px;
+        border-radius: 0;
+        background: rgba(255, 255, 255, 0.9);
+
+    }
+
+    .contact-footer {
+        position: absolute;
+        bottom: 0;
+        height: 20px;
+        background: rgba(0, 0, 0, 0.9);
+    }
+}
