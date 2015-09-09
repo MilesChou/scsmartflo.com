@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class ContactController extends Zend_Controller_Action
 {
     public function init()
     {
@@ -9,6 +9,6 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $homeService = new Application_Service_Home();
+        $contactService = new Application_Service_Contact();
     }
 }

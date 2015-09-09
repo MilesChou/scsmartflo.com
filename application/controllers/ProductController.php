@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class ProductController extends Zend_Controller_Action
 {
     public function init()
     {
@@ -9,6 +9,6 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $homeService = new Application_Service_Home();
+        $productService = new Application_Service_Product();
     }
 }
