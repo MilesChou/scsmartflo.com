@@ -12,57 +12,245 @@ $themeBlue: #1616DB;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$from', endColorstr='$to', GradientType=0); /* IE6-9 */
 }
 
-.container-fluid {
-    padding: 0;
-}
+$navHeight: 60px;
 
+//導覽列
 .navbar {
-    height: 70px;
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    @include bg-gradient(#262b32, #141414);
+    position: fixed;
+    overflow: hidden;
+    padding-right: 10px;
+    z-index: 9999;
+    width: 100%;
+    height: $navHeight;
+    @include bg-gradient(#2f363e, #222222);
 
-    ul {
-        margin-right: 30px;
-    }
-
-    li {
-        height: 70px !important;
-        line-height: 70px;
-    }
-
+    //LOGO
     .navbar-brand {
+        float: left;
+        line-height: $navHeight;
         img {
-            height: 30px;
-            margin-top: 5px;
-            margin-left: 20px;
+            height: $navHeight * 0.4;
+            margin-top: ($navHeight * 0.6) * 0.5;
+            margin-left: ($navHeight * 0.6) * 0.5;
         }
     }
 
-    a {
-        font-size: 13px;
-    }
-
-    li.current {
-        transform: skewX(-20deg);
-        -webkit-transform: skewX(-20deg);
-        -ms-transform: skewX(-20deg);
-
-        &.bg-red {
-            @include bg-gradient($themeRed, #570a0a);
-        }
-
-        &.bg-blue {
-            @include bg-gradient($themeBlue, #12125b);
-        }
+    //導覽列內容
+    .navbar-list {
+        float: right;
 
         a {
-            color: #cacaca !important;
-            transform: skewX(20deg);
-            -webkit-transform: skewX(20deg);
-            -ms-transform: skewX(20deg);
+            color: white;
         }
+
+        li {
+            display: inline-block;
+            line-height: $navHeight;
+            padding: 0 15px;
+
+            &.current {
+                transform: skewX(-20deg);
+                -webkit-transform: skewX(-20deg);
+                -ms-transform: skewX(-20deg);
+
+                &.bg-red {
+                    @include bg-gradient($themeRed, #570a0a);
+                }
+
+                &.bg-blue {
+                    @include bg-gradient($themeBlue, #12125b);
+                }
+
+                a {
+                    color: #cacaca;
+                    transform: skewX(20deg);
+                    -webkit-transform: skewX(20deg);
+                    -ms-transform: skewX(20deg);
+                }
+            }
+        }
+    }
+}
+
+.container {
+    position: absolute;
+    top: $navHeight;
+    width: 100%;
+}
+
+//about
+.intro {
+    position: relative;
+
+    .intro-content {
+        position: relative;
+        overflow: hidden;
+        background: url(/img/bg1.jpg);
+        background-size: cover;
+    }
+
+    img {
+        float: right;
+    }
+
+    h3 {
+        position: absolute;
+        padding: 10px;
+        text-align: center;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 20px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .next-btn,
+    .prev-btn {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.8);
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        overflow: auto;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+    }
+
+    .next-btn {
+        left: 10px;
+    }
+    .prev-btn {
+        right: 10px;
+    }
+}
+
+.intro-detail {
+    padding: 30px 50px;
+    overflow: hidden;
+    h4 {
+        font-size: 30px;
+        margin: 20px 0 30px;
+    }
+    p {
+        width: 45%;
+        font-size: 13px;
+        line-height: 20px;
+
+        &.left {
+            float: left;
+        }
+
+        &.right {
+             float: right;
+        }
+    }
+}
+
+//產品列表背景
+.products {
+    background: url("/img/bg-products.jpg") no-repeat;
+    background-size: 100% auto;
+
+    .products-kinds {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-top: 1px solid #333;
+
+        ul {
+            box-sizing: border-box;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        li {
+            position: relative;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 19.5%;
+            color: #333;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+
+            -webkit-transition: background-color 0.5s, color 0.5s;
+            -moz-transition: background-color 0.5s, color 0.5s;
+            transition: background-color 0.5s, color 0.5s;
+
+            &:hover {
+                color: #525252;
+                background-color: #dedede;
+            }
+
+            &.current {
+                color: white;
+                font-weight: bold;
+
+                .arrow {
+                    border-bottom-color: white;
+                }
+            }
+        }
+
+        .arrow {
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            margin: 0 auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+
+    .product-container {
+        position: relative;
+        width: 80%;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .product-item {
+        float: left;
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        background-color: #0398CA;
+        overflow: hidden;
+
+        img {
+            width: 150px;
+            height: 150px;
+            transition: 1s;
+        }
+
+        &:hover {
+            img {
+                -webkit-transform: scale(1.3, 1.3) rotate(15deg);
+                -moz-transform: scale(1.3, 1.3) rotate(15deg);
+                -ms-transform: scale(1.3, 1.3) rotate(15deg);
+                transform: scale(1.3, 1.3) rotate(15deg);
+            }
+        }
+    }
+
+    .product-now {
+        float: left;
+        clear: both;
+
+        margin: 10px;
+        width: 100%;
+        height: 100px;
+        background-color: #0398CA;
     }
 }
 
@@ -226,42 +414,58 @@ $themeBlue: #1616DB;
 }
 
 .contact-us {
-    background: url("/public/img/bg-form.jpg") no-repeat;
-    -moz-background-size:cover;
-    -webkit-background-size:cover;
-    -o-background-size:cover;
-    background-size:cover;
+    background: url("/img/bg-form.jpg") no-repeat;
+    background-size: 100% auto;
     border-top: 1px solid #666;
+    text-align: center;
 
     .contact-form {
-        margin: 20px 60px 0 60px;
-        padding: 30px 140px 260px 140px;
-    }
-
-    .form-group {
-        padding: 3px;
+        width: 300px;
+        margin: auto;
+        margin-top: 50px;
     }
 
     input, textarea {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        height: 40px;
         line-height: 25px;
-        font-style: italic;
-        height: 50px;
-        border-radius: 0;
+        margin-bottom: 10px;
+        padding: 5px 10px;
         font-size: 14px;
+        outline: none;
+    }
+
+    textarea {
+        height: 130px;
+    }
+
+    input[type=text], textarea {
+        font-style: italic;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid #cccccc;
+        -webkit-transition: background-color 0.3s, color 0.3s;
+        -moz-transition: background-color 0.3s, color 0.3s;
+        transition: background-color 0.3s, color 0.3s;
+
+        &:focus {
+            background: white;
+            border: 1px solid #666;
+        }
     }
 
     .btn-submit {
-        width: 100%;
-        height: 50px;
-        border-radius: 0;
+        -webkit-transition: background-color 0.3s, color 0.3s;
+           -moz-transition: background-color 0.3s, color 0.3s;
+                transition: background-color 0.3s, color 0.3s;
         background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #666;
+        cursor: pointer;
 
-    }
-
-    .contact-footer {
-        position: absolute;
-        bottom: 0;
-        height: 20px;
-        background: rgba(0, 0, 0, 0.9);
+        &:hover {
+            color: white;
+            background: rgba(0, 0, 0, 0.8);
+        }
     }
 }
