@@ -67,16 +67,6 @@ if [ ! -e $IS_INSTALLED ];then
     # install composer
     curl -sS https://getcomposer.org/installer | php
     mv composer.phar /usr/local/bin/composer
-
-    # install Docker
-    wget -qO- https://get.docker.com/ | sh
-
-    # add user vagrant into group docker
-    usermod -aG docker vagrant
-
-    # install Docker Compose
-    curl -L https://github.com/docker/compose/releases/download/1.2.0rc2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
 fi
 
 # modified php.ini
