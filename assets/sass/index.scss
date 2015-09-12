@@ -248,6 +248,10 @@ $navHeight: 60px;
             padding: 10px;
         }
 
+        .product-describe {
+            display: none;
+        }
+
         &:hover {
             img {
                 @include transform(scale(1.3, 1.3));

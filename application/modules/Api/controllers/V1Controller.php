@@ -17,4 +17,44 @@ class Api_V1Controller extends Zend_Controller_Action
 
         $this->getResponse()->setBody(json_encode($json));
     }
+
+    public function getProductAction()
+    {
+        //post[kind] 產品分類
+
+        $json = array(
+            array(
+                'id' => 'product',                 //產品id 同時也是圖片id
+                'name' => 'ViaAjax',          //產品名稱
+                'description' => 'Super.........'   //產品敘述
+            ),
+            array(
+                'id' => 'product',                 //產品id 同時也是圖片id
+                'name' => 'ViaAjax',          //產品名稱
+                'description' => 'Super.........'   //產品敘述
+            ),
+            array(
+                'id' => 'product',                 //產品id 同時也是圖片id
+                'name' => 'ViaAjax',          //產品名稱
+                'description' => 'Super.........'   //產品敘述
+            ),
+            array(
+                'id' => 'product',                 //產品id 同時也是圖片id
+                'name' => 'ViaAjax',          //產品名稱
+                'description' => 'Super.........'   //產品敘述
+            ),
+            array(
+                'id' => 'product',                 //產品id 同時也是圖片id
+                'name' => 'ViaAjax',          //產品名稱
+                'description' => 'Super.........'   //產品敘述
+            ),
+            array(
+                'id' => 'product',                 //產品id 同時也是圖片id
+                'name' => 'ViaAjax',          //產品名稱
+                'description' => 'Super.........'   //產品敘述
+            ),
+        );
+
+        echo json_encode($json);
+    }
 }

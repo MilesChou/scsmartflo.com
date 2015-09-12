@@ -53,14 +53,41 @@ $(function () {
     $productKindList.click(function () {
         $productKindList.removeClass('current');
         $(this).addClass('current');
-        //$productContainer.empty();
+        $.getJSON('/api/v1/get-product', function (data) {
+            $productContainer.empty();
+            for (var i = 0, len = data.length; i < len; i++) {
+                var productData = data[i];
+                var $product = $('<div/>')
+                    .data('productId', productData.id)
+                    .addClass('product-item');
+
+                //img
+                $('<img/>')
+                    .attr('src', '/img/' + productData.id + '.jpg')
+                    .appendTo($product);
+
+                //name
+                $('<div/>')
+                    .addClass('product-name')
+                    .text(productData.name)
+                    .appendTo($product);
+
+                //describe
+                $('<div/>')
+                    .addClass('product-describe')
+                    .text(productData.description)
+                    .appendTo($product);
+
+                $productContainer.append($product);
+            }
+        });
     });
 
     //預設關閉
     $productDetail.hide().addClass('hide');
 
     $productContainer.on('click', '.product-item', function () {
-        showProductDetail();
+        showProductDetail($(this));
     });
 
     $productDetail
@@ -89,7 +116,10 @@ $(function () {
         });
     }
 
-    function showProductDetail () {
+    function showProductDetail ($showTarget) {
+        var $productDescribe = $productDetail.find('.product-describe');
+        $productDescribe.find('h3').text($showTarget.find('.product-name').text());
+        $productDescribe.find('p').text($showTarget.find('.product-describe').text());
         $productDetail.toggle(0, function () {
             $productDetail.toggleClass('hide');
         });
