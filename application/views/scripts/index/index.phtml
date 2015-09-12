@@ -1,4 +1,20 @@
 <?php
+
+$slides = array(
+    array(
+        'bg' => 'bg1',                    //背景圖
+        'description' => 'We are compnay'   //背景簡介
+    ),
+    array(
+        'bg' => 'bg1',
+        'description' => '2222'
+    ),
+    array(
+        'bg' => 'bg1',
+        'description' => '333'
+    ),
+);
+
 $products = array(
     array(
         'id' => 'product',                 //產品id 同時也是圖片id
@@ -53,18 +69,12 @@ $products = array(
 <div class="container">
     <div class="intro">
         <div class="intro-carousel">
-            <div class="intro-content current">
-                <img src="/img/bg1.jpg">
-                <h3>We are compnay</h3>
+            <?php foreach ($slides as $key => $slide) { ?>
+            <div class="intro-content<?php echo $key == 0 ? ' current' : ''; ?>">
+                <img src="/img/<?php echo $slide['bg']; ?>.jpg">
+                <h3><?php echo $slide['description']; ?></h3>
             </div>
-            <div class="intro-content">
-                <img src="/img/bg1.jpg">
-                <h3>We are compnay</h3>
-            </div>
-            <div class="intro-content">
-                <img src="/img/bg1.jpg">
-                <h3>We are compnay</h3>
-            </div>
+            <?php } ?>
         </div>
         <div class="next-btn">
             <i class="fa fa-angle-left"></i>
