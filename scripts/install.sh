@@ -53,6 +53,10 @@ if [ ! -e $IS_INSTALLED ];then
     # install packages
     apt-get install -y $PACKAGES
 
+    # enable rewrite
+    a2enmod rewrite
+    sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+
     # set MySQL password and domain
     mysql -uroot -ppassword -e 'USE mysql; UPDATE `user` SET `Host`="%" WHERE `User`="root" AND `Host`="localhost"; DELETE FROM `user` WHERE `Host` != "%" AND `User`="root"; FLUSH PRIVILEGES;'
     mysql -uroot -ppassword -e 'CREATE DATABASE `default` DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;'
