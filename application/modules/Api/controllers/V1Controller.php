@@ -10,5 +10,11 @@ class Api_V1Controller extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $json = array(
+            'path' => '/api/v1',
+            'api-available' => array(),
+        );
+
+        $this->getResponse()->setBody(json_encode($json));
     }
 }
