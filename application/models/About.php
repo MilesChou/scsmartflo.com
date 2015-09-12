@@ -10,11 +10,6 @@ class Application_Model_About
     const CONFIG_KEY = 'about';
 
     /**
-     * @var Application_Model_DbTable_Config
-     */
-    private $configTable;
-
-    /**
      * @var Application_Model_DbTable_Row_Config
      */
     private $configRow;
@@ -29,8 +24,8 @@ class Application_Model_About
      */
     public function __construct()
     {
-        $this->configTable = new Application_Model_DbTable_Config();
-        $this->configRow = $this->configTable->fetchRow(array('id = ?' => 1));
+        $configTable = new Application_Model_DbTable_Config();
+        $this->configRow = $configTable->getConfigRow();
         $this->data = $this->configRow->getConfig(self::CONFIG_KEY);
 
         if ($this->data === null) {
@@ -139,7 +134,7 @@ class Application_Model_About
     }
 
     /**
-     * 儲存附圖文字說明
+     * 儲存
      */
     public function save()
     {

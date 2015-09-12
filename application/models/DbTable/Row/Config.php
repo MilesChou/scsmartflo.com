@@ -7,7 +7,6 @@
  */
 class Application_Model_DbTable_Row_Config extends Zend_Db_Table_Row_Abstract
 {
-    const PK = 1;
     const COLUMN = 'content';
 
     /**
