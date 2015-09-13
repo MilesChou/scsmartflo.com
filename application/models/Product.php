@@ -25,7 +25,7 @@ class Application_Model_Product
 
 
     /**
-     * @return array
+     * @return Zend_Db_Table_Rowset_Abstract
      */
     public function getCategory()
     {
@@ -100,9 +100,21 @@ class Application_Model_Product
         return $this->productTable->getProduct($category);
     }
 
-    public function addProduct()
+    /**
+     * @param int $category
+     * @param string $title
+     * @param string $desc
+     * @param string $pic
+     */
+    public function addProduct($category, $title, $desc, $pic)
     {
+        $row = $this->productTable->createRow();
+        $row->category_id = $category;
+        $row->title = $title;
+        $row->description = $desc;
+        $row->pic = $pic;
 
+        $row->save();
     }
 
     public function updProduct()

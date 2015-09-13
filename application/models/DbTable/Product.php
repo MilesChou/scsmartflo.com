@@ -10,7 +10,7 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
     public function __construct()
     {
         $config = array(
-            Zend_Db_Table_Abstract::NAME => 'productCategory',
+            Zend_Db_Table_Abstract::NAME => 'product',
         );
 
         parent::__construct($config);

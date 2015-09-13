@@ -1,0 +1,14 @@
+<?php foreach ($this->list as $item): ?>
+<div>
+</div>
+<?php endforeach;?>
+
+
+<div>新增</div>
+<form method="post" enctype="multipart/form-data" action="/admin/product/add">
+    category <input type="text" name="category" /></br>
+    Title <input type="text" name="title" /></br>
+    Desc <input type="text" name="description" /></br>
+    Pic <input type="file" name="pic" /></br>
+    <input type="submit" />
+</form>
