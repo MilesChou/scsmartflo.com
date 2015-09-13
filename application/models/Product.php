@@ -84,9 +84,11 @@ class Application_Model_Product
 
     /**
      * @param int $id
+     * @return null|Zend_Db_Table_Row_Abstract
      */
     public function getProduct($id)
     {
+        return $this->productTable->fetchRow(array('id = ?' => $id));
     }
 
     /**
@@ -95,7 +97,7 @@ class Application_Model_Product
      */
     public function getProducts($category = null)
     {
-        return $this->productTable->fetchAll();
+        return $this->productTable->getProduct($category);
     }
 
     public function addProduct()

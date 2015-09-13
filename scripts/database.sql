@@ -25,7 +25,7 @@ CREATE TABLE `download` (
 -- ---------------------------------------
 CREATE TABLE `productCategory` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -34,7 +34,10 @@ CREATE TABLE `productCategory` (
 -- -------------------------------
 CREATE TABLE `product` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
+  `category_id` int(11) unsigned NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `pic` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

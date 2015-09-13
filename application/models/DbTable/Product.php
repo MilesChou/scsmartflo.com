@@ -15,4 +15,19 @@ class Application_Model_DbTable_Product extends Zend_Db_Table_Abstract
 
         parent::__construct($config);
     }
+
+    /**
+     * @param int|null $category
+     * @return Zend_Db_Table_Rowset_Abstract
+     */
+    public function getProduct($category = null)
+    {
+        $select = $this->select();
+
+        if ($category !== null) {
+            $select->where('category_id = ?', $category);
+        }
+
+        return $this->fetchAll($select);
+    }
 }
