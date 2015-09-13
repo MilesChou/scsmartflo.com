@@ -12,16 +12,30 @@ class Api_V1Controller extends Zend_Controller_Action
     {
         $json = array(
             'path' => '/api/v1',
-            'api-available' => array(),
+            'available' => array(
+                'get-category',
+            ),
         );
 
         $this->getResponse()->setBody(json_encode($json));
     }
 
+    /**
+     * 取得分類列表
+     */
+    public function getCategoryAction()
+    {
+        $productService = new Application_Service_Product();
+        $data = $productService->getCategory();
+
+        $this->getResponse()->setBody(json_encode($data->toArray()));
+    }
+
+    /**
+     * 取得產品列表
+     */
     public function getProductAction()
     {
-        //get[kind] 產品分類
-
         $json = array(
             array(
                 'id' => 'product',                 //產品id 同時也是圖片id
@@ -58,7 +72,8 @@ class Api_V1Controller extends Zend_Controller_Action
         echo json_encode($json);
     }
 
-    public function faqAction () {
+    public function faqAction()
+    {
         //post[username]
         //post[email]
         //post[phone] *optional
