@@ -74,7 +74,7 @@ class Application_Service_Product
      * @param int $category
      * @return Zend_Db_Table_Rowset_Abstract
      */
-    public function getList($category)
+    public function getProducts($category = null)
     {
         return $this->model->getProducts($category);
     }

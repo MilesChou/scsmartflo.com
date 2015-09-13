@@ -36,40 +36,10 @@ class Api_V1Controller extends Zend_Controller_Action
      */
     public function getProductAction()
     {
-        $json = array(
-            array(
-                'id' => 'product',                 //產品id 同時也是圖片id
-                'name' => 'ViaAjax',          //產品名稱
-                'description' => 'Super.........'   //產品敘述
-            ),
-            array(
-                'id' => 'product',                 //產品id 同時也是圖片id
-                'name' => 'ViaAjax',          //產品名稱
-                'description' => 'Super.........'   //產品敘述
-            ),
-            array(
-                'id' => 'product',                 //產品id 同時也是圖片id
-                'name' => 'ViaAjax',          //產品名稱
-                'description' => 'Super.........'   //產品敘述
-            ),
-            array(
-                'id' => 'product',                 //產品id 同時也是圖片id
-                'name' => 'ViaAjax',          //產品名稱
-                'description' => 'Super.........'   //產品敘述
-            ),
-            array(
-                'id' => 'product',                 //產品id 同時也是圖片id
-                'name' => 'ViaAjax',          //產品名稱
-                'description' => 'Super.........'   //產品敘述
-            ),
-            array(
-                'id' => 'product',                 //產品id 同時也是圖片id
-                'name' => 'ViaAjax',          //產品名稱
-                'description' => 'Super.........'   //產品敘述
-            ),
-        );
+        $productService = new Application_Service_Product();
+        $data = $productService->getProducts();
 
-        echo json_encode($json);
+        $this->getResponse()->setBody(json_encode($data->toArray()));
     }
 
     public function faqAction()
