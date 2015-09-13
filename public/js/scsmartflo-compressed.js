@@ -28,6 +28,7 @@ $(function () {
     var $productContainer = $('.product-container');
     var $productDetailContainer = $productDetail.find('.product-detail-container');
     var $contactForm = $('.contact-form');
+    var $form = $contactForm.find('form');
 
     $('.intro-carousel')
         .slick({
@@ -53,7 +54,7 @@ $(function () {
     $productKindList.click(function () {
         $productKindList.removeClass('current');
         $(this).addClass('current');
-        $.getJSON('/api/v1/get-product', function (data) {
+        $.getJSON('/api/v1/get-product', { kind: $(this).data('kind') }, function (data) {
             $productContainer.empty();
             for (var i = 0, len = data.length; i < len; i++) {
                 var productData = data[i];
@@ -125,4 +126,39 @@ $(function () {
         });
     }
 
+    $form.validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 2
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            title: {
+                required: true,
+                minlength: 2
+            }
+        },
+        messages: {
+            username: {
+                required: 'required',
+                minlength: 'at least 2 characters'
+            },
+            email: {
+                required: "required",
+                email: "invalid email",
+            },
+            title: {
+                required: 'required',
+                minlength: 'at least 2 characters'
+            }
+        },
+        submitHandler: function () {
+            $.post('/api/v1/faq', $form.serializeArray(), function () {
+                alert('Thank you for the interest!');
+            })
+        }
+    });
 });

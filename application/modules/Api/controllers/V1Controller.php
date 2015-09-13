@@ -20,7 +20,7 @@ class Api_V1Controller extends Zend_Controller_Action
 
     public function getProductAction()
     {
-        //post[kind] 產品分類
+        //get[kind] 產品分類
 
         $json = array(
             array(
@@ -56,5 +56,13 @@ class Api_V1Controller extends Zend_Controller_Action
         );
 
         echo json_encode($json);
+    }
+
+    public function faqAction () {
+        //post[username]
+        //post[email]
+        //post[phone] *optional
+        //post[title]
+        //post[message] *optional
     }
 }
