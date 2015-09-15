@@ -27,7 +27,7 @@ class Application_Model_Download
 
     /**
      * @param string $title
-     * @param string $title
+     * @param string $file
      * @return Zend_Db_Table_Row_Abstract
      */
     public function addDownload($title, $file)

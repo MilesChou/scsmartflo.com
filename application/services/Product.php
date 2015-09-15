@@ -78,4 +78,5 @@ class Application_Service_Product
     {
         return $this->model->getProducts($category);
     }
+
 }

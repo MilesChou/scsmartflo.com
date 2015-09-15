@@ -11,10 +11,10 @@ class Admin_ProductController extends Zend_Controller_Action
     {
         $category = null;
         $productService = new Application_Service_Product();
-        $list = $productService->getList($category);
+        $products = $productService->getProducts($category);
         $category = $productService->getCategory();
 
-        $this->view->list = $list;
+        $this->view->products = $products;
         $this->view->category = $category;
     }
 
