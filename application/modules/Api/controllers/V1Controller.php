@@ -14,6 +14,8 @@ class Api_V1Controller extends Zend_Controller_Action
             'path' => '/api/v1',
             'available' => array(
                 'get-category',
+                'get-product',
+                'get-download',
             ),
         );
 
@@ -38,6 +40,17 @@ class Api_V1Controller extends Zend_Controller_Action
     {
         $productService = new Application_Service_Product();
         $data = $productService->getProducts();
+
+        $this->getResponse()->setBody(json_encode($data->toArray()));
+    }
+
+    /**
+     * Get downloads
+     */
+    public function getDownloadAction()
+    {
+        $downloadService = new Application_Service_Download();
+        $data = $downloadService->getDownloads();
 
         $this->getResponse()->setBody(json_encode($data->toArray()));
     }
