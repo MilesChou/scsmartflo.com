@@ -1,8 +1,4 @@
-<?php foreach ($this->products as $product): ?>
-<div>
-    <?php echo $product->title; ?>
-</div>
-<?php endforeach;?>
+<?php var_dump($this->products->toArray()) ?>
 
 <div>新增</div>
 <form method="post" enctype="multipart/form-data" action="/admin/product/add">
