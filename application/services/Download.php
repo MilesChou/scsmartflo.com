@@ -13,12 +13,12 @@ class Application_Service_Download
     }
 
     /**
-     * @param Zend_Controller_Request_Http
+     * @param Zend_Controller_Request_Http $request
      * @param Zend_File_Transfer_Adapter_Http $file
      */
     public function addDownload($request, $file)
     {
-        $post = $request->getPost();
+        $post = $request->getParams();
         $fileInfo = $file->getFileInfo();
 
         if (isset($fileInfo['file']) && $fileInfo['file']['error'] == 0) {
@@ -35,33 +35,33 @@ class Application_Service_Download
     }
 
     /**
-     * @param Zend_Controller_Request_Http
-     * @param Zend_File_Transfer_Adapter_Http $file
+     * @param int $id
+     * @param Zend_Controller_Request_Http $request
      */
-    public function updProduct($request, $file)
+    public function updDownload($id, $request)
     {
-        $post = $request->getPost();
-        $fileInfo = $file->getFileInfo();
+        $post = $request->getParams();
 
-        if (isset($fileInfo['file']) && $fileInfo['file']['error'] == 0) {
-            $filename = time() . $fileInfo['file']['name'];
-            $file->addFilter('Rename', array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
+        $this->model->updDownload(
+            $id,
+            $post['title']
+        );
+    }
 
-            $file->receive();
-
-            $this->model->updDownload(
-                $post['title'],
-                $filename
-            );
-        }
+    /**
+     * @param Zend_Controller_Request_Http
+     */
+    public function delDownload($id)
+    {
+        $this->model->delDownload($id);
     }
 
     /**
      * @return Zend_Db_Table_Rowset_Abstract
      */
-    public function getDownloads()
+    public
+    function getDownloads()
     {
         return $this->model->getDownload();
     }
-
 }

@@ -66,12 +66,13 @@ class Application_Model_Download
      */
     public function delDownload($id)
     {
-        $row = $this->downloadTable->fetchRow(array('id = ?', $id));
+        $row = $this->downloadTable->fetchRow(array('id = ?' => $id));
 
         if ($row === null) {
             return false;
         }
 
+        unlink(APPLICATION_PATH . '/../public/upload/' . $row->file);
         $row->delete();
 
         return true;

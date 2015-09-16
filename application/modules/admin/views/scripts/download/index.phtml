@@ -1,8 +1,13 @@
 <?php var_dump($this->downloads->toArray()) ?>
 
+<dev>Delete:</dev>
+<?php foreach ($this->downloads as $download) : ?>
+    <div><a href="/admin/download/del/id/<?php echo $download['id']; ?>"><?php echo $download['title'] ?></a></div>
+<?php endforeach; ?>
+
 <div>新增</div>
 <form method="post" enctype="multipart/form-data" action="/admin/download/add">
-    Title <input type="text" name="title" /><br>
-    File <input type="file" name="file" /><br>
-    <input type="submit" />
+    Title <input type="text" name="title"/><br>
+    File <input type="file" name="file"/><br>
+    <input type="submit"/>
 </form>
