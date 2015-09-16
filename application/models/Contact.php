@@ -30,10 +30,10 @@ class Application_Model_Contact
 
         if ($this->data === null) {
             $this->data = array(
-                'cover' => '',
-                'description' => '',
-                'pics' => '',
-                'picDescription' => '',
+                'title' => '',
+                'logo' => '',
+                'address' => '',
+                'phone' => '',
                 'email' => '',
             );
 
@@ -71,9 +71,10 @@ class Application_Model_Contact
     /**
      * 寄信
      *
-     * @todo Implement it
+     * @param array $form
      */
-    public function sendForm()
+    public function sendForm($form)
     {
+        // TODO: Implement it
     }
 }
