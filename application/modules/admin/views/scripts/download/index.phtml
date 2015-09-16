@@ -1,0 +1,8 @@
+<?php var_dump($this->downloads->toArray()) ?>
+
+<div>新增</div>
+<form method="post" enctype="multipart/form-data" action="/admin/download/add">
+    Title <input type="text" name="title" /><br>
+    File <input type="file" name="file" /><br>
+    <input type="submit" />
+</form>
