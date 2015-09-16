@@ -21,12 +21,13 @@ class Application_Service_Product
     }
 
     /**
-     * @param Zend_Controller_Request_Http
+     * @param int $id
+     * @param Zend_Controller_Request_Http $request
      * @param Zend_File_Transfer_Adapter_Http $file
      */
-    public function addProduct($request, $file)
+    public function addProduct($id, $request, $file)
     {
-        $post = $request->getPost();
+        $post = $request->getParams();
         $fileInfo = $file->getFileInfo();
 
         if (isset($fileInfo['pic']) && $fileInfo['pic']['error'] == 0) {
@@ -46,8 +47,8 @@ class Application_Service_Product
     }
 
     /**
-     * @param $id
-     * @param $title
+     * @param int $id
+     * @param string $title
      */
     public function updCategory($id, $title)
     {
@@ -55,12 +56,13 @@ class Application_Service_Product
     }
 
     /**
-     * @param Zend_Controller_Request_Http
+     * @param int $id
+     * @param Zend_Controller_Request_Http $request
      * @param Zend_File_Transfer_Adapter_Http $file
      */
-    public function updProduct($request, $file)
+    public function updProduct($id, $request, $file)
     {
-        $post = $request->getPost();
+        $post = $request->getParams();
         $fileInfo = $file->getFileInfo();
 
         if (isset($fileInfo['pic']) && $fileInfo['pic']['error'] == 0) {
@@ -70,7 +72,8 @@ class Application_Service_Product
 
             $file->receive();
 
-            $this->model->addProduct(
+            $this->model->updProduct(
+                $id,
                 $post['category'],
                 $post['title'],
                 $post['description'],
@@ -85,6 +88,11 @@ class Application_Service_Product
     public function delCategory($id)
     {
         $this->model->delCategory($id);
+    }
+
+    public function delProduct($id)
+    {
+        $this->model->delProduct($id);
     }
 
     /**
@@ -103,5 +111,4 @@ class Application_Service_Product
     {
         return $this->model->getProducts($category);
     }
-
 }

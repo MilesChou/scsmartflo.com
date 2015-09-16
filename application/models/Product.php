@@ -122,9 +122,28 @@ class Application_Model_Product
         $row->save();
     }
 
-    public function updProduct()
+    /**
+     * @param int $id
+     * @param int $category
+     * @param string $title
+     * @param string $desc
+     * @param string $pic
+     * @return bool
+     */
+    public function updProduct($id, $category, $title, $desc, $pic)
     {
+        $row = $this->productTable->fetchRow(array('id = ?' => $id));
 
+        if ($row === null) {
+            return false;
+        }
+
+        $row->category_id = $category;
+        $row->title = $title;
+        $row->description = $desc;
+        $row->pic = $pic;
+
+        $row->save();
     }
 
     /**

@@ -31,6 +31,31 @@ class Admin_ProductController extends Zend_Controller_Action
         $productService->addProduct($request, $file);
     }
 
+    public function updAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+        $file = new Zend_File_Transfer_Adapter_Http();
+
+        $productService = new Application_Service_Product();
+        $productService->addProduct($id, $request, $file);
+    }
+
+    public function delAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+
+        $productService = new Application_Service_Product();
+        $productService->delProduct($id);
+    }
+
     public function addCategoryAction()
     {
         $this->getHelper('viewRenderer')->setNoRender();

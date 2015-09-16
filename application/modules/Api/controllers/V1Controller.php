@@ -25,7 +25,7 @@ class Api_V1Controller extends Zend_Controller_Action
     /**
      * 取得分類列表
      */
-    public function getCategoryAction()
+    public function getProductCategoryAction()
     {
         $productService = new Application_Service_Product();
         $data = $productService->getCategory();
