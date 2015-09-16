@@ -4,7 +4,8 @@ class Admin_ProductController extends Zend_Controller_Action
 {
     public function init()
     {
-        /* Initialize action controller here */
+        $layout = $this->getHelper('layout');
+        $layout->setLayout('admin');
     }
 
     public function indexAction()
