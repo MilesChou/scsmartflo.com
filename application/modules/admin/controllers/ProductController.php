@@ -30,4 +30,47 @@ class Admin_ProductController extends Zend_Controller_Action
         $productService = new Application_Service_Product();
         $productService->addProduct($request, $file);
     }
+
+    public function addCategoryAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $request = $this->getRequest();
+        $title = $request->getParam('title');
+
+        $productService = new Application_Service_Product();
+        $productService->addCategory($title);
+
+        $this->redirect('/admin/product');
+    }
+
+    public function updCategoryAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+        $title = $request->getParam('title');
+
+        $productService = new Application_Service_Product();
+        $productService->updCategory($id, $title);
+
+        $this->redirect('/admin/product');
+    }
+
+    public function delCategoryAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $request = $this->getRequest();
+        $id = $request->getParam('id');
+
+        $productService = new Application_Service_Product();
+        $productService->delCategory($id);
+
+        $this->redirect('/admin/product');
+    }
 }

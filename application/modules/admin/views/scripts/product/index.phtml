@@ -2,9 +2,22 @@
 
 <div>新增</div>
 <form method="post" enctype="multipart/form-data" action="/admin/product/add">
-    category <input type="text" name="category" /></br>
-    Title <input type="text" name="title" /></br>
-    Desc <input type="text" name="description" /></br>
-    Pic <input type="file" name="pic" /></br>
-    <input type="submit" />
+    category <input type="text" name="category"/></br>
+    Title <input type="text" name="title"/></br>
+    Desc <input type="text" name="description"/></br>
+    Pic <input type="file" name="pic"/></br>
+    <input type="submit"/>
+</form>
+
+<?php var_dump($this->category->toArray()) ?>
+
+<dev>Delete Category:</dev>
+<?php foreach ($this->category as $category) : ?>
+    <div><a href="/admin/product/del-category/id/<?php echo $category['id']; ?>"><?php echo $category['title'] ?></a></div>
+<?php endforeach; ?>
+
+<div>Add category</div>
+<form method="post" action="/admin/product/add-category">
+    Title <input type="text" name="title"/></br>
+    <input type="submit"/>
 </form>

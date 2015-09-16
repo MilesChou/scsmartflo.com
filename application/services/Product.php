@@ -13,6 +13,14 @@ class Application_Service_Product
     }
 
     /**
+     * @param $title
+     */
+    public function addCategory($title)
+    {
+        $this->model->addCategory($title);
+    }
+
+    /**
      * @param Zend_Controller_Request_Http
      * @param Zend_File_Transfer_Adapter_Http $file
      */
@@ -38,6 +46,15 @@ class Application_Service_Product
     }
 
     /**
+     * @param $id
+     * @param $title
+     */
+    public function updCategory($id, $title)
+    {
+        $this->model->updCategory($id, $title);
+    }
+
+    /**
      * @param Zend_Controller_Request_Http
      * @param Zend_File_Transfer_Adapter_Http $file
      */
@@ -60,6 +77,14 @@ class Application_Service_Product
                 $filename
             );
         }
+    }
+
+    /**
+     * @param $id
+     */
+    public function delCategory($id)
+    {
+        $this->model->delCategory($id);
     }
 
     /**

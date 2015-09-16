@@ -71,10 +71,15 @@ class Application_Model_Product
      */
     public function delCategory($id)
     {
-        $row = $this->categoryTable->fetchRow(array('id = ?', $id));
+        $row = $this->categoryTable->fetchRow(array('id = ?' => $id));
 
         if ($row === null) {
             return false;
+        }
+
+        $products = $this->getProducts($id);
+        foreach ($products as $product) {
+            $this->delProduct($product->id);
         }
 
         $row->delete();
@@ -122,8 +127,22 @@ class Application_Model_Product
 
     }
 
-    public function delProduct()
+    /**
+     * @param $id
+     * @return bool
+     * @throws Zend_Db_Table_Row_Exception
+     */
+    public function delProduct($id)
     {
+        $row = $this->productTable->fetchRow(array('id = ?' => $id));
 
+        if ($row === null) {
+            return false;
+        }
+
+        unlink(APPLICATION_PATH . '/../public/upload/' . $row->pic);
+        $row->delete();
+
+        return true;
     }
 }
