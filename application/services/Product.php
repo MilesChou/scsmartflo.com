@@ -21,11 +21,10 @@ class Application_Service_Product
     }
 
     /**
-     * @param int $id
      * @param Zend_Controller_Request_Http $request
      * @param Zend_File_Transfer_Adapter_Http $file
      */
-    public function addProduct($id, $request, $file)
+    public function addProduct($request, $file)
     {
         $post = $request->getParams();
         $fileInfo = $file->getFileInfo();

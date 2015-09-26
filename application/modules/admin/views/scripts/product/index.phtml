@@ -1,23 +1,54 @@
-<?php var_dump($this->products->toArray()) ?>
+<?php
+$products = $this->products->toArray();
 
+$categories = array();
+
+foreach ($this->category->toArray() as $item) {
+    $categories[$item['id']] = $item;
+}
+
+?>
 <table>
-
+    <thead>
+    <tr>
+        <td>分類</td>
+        <td>標題</td>
+        <td>圖片</td>
+        <td>說明</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($products as $product): ?>
+    <tr>
+        <td><?php echo $categories[$product['category_id']]['title'] ?></td>
+        <td><?php echo $product['title'] ?></td>
+        <td><img src="/upload/<?php echo $product['pic'] ?>"></td>
+        <td><?php echo $product['description'] ?></td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
 </table>
 
 <div>新增</div>
 <form method="post" enctype="multipart/form-data" action="/admin/product/add">
-    category <input type="text" name="category"/></br>
-    Title <input type="text" name="title"/></br>
-    Desc <input type="text" name="description"/></br>
-    Pic <input type="file" name="pic"/></br>
+    category <select name="category">
+        <?php foreach ($categories as $category): ?>
+            <option value="<?php echo $category['id'] ?>"><?php echo $category['title'] ?></option>
+        <?php endforeach; ?>
+    </select><br>
+    Title <input type="text" name="title"/><br>
+    Desc <input type="text" name="description"/><br>
+    Pic <input type="file" name="pic"/><br>
     <input type="submit"/>
 </form>
 
-<?php var_dump($this->category->toArray()) ?>
+<?php var_dump($categories) ?>
 
 <dev>Delete Category:</dev>
-<?php foreach ($this->category as $category) : ?>
-    <div><a href="/admin/product/del-category/id/<?php echo $category['id']; ?>"><?php echo $category['title'] ?></a></div>
+<?php foreach ($this->category as $categories) : ?>
+    <div>
+        <a href="/admin/product/del-category/id/<?php echo $categories['id']; ?>"><?php echo $categories['title'] ?></a>
+    </div>
 <?php endforeach; ?>
 
 <div>Add category</div>
