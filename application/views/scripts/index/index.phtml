@@ -1,27 +1,6 @@
 <?php
 
-$kinds = array(
-    array(
-        'id' => 'kind1',
-        'name' => 'KindName1'
-    ),
-    array(
-        'id' => 'kind2',
-        'name' => 'KindName2'
-    ),
-    array(
-        'id' => 'kind3',
-        'name' => 'KindName3'
-    ),
-    array(
-        'id' => 'kind4',
-        'name' => 'KindName4'
-    ),
-    array(
-        'id' => 'kind5',
-        'name' => 'KindName5'
-    )
-);
+$categories = $this->categories;
 
 $slides = array(
     array(
@@ -117,8 +96,8 @@ $products = array(
     <div class="products">
         <div class="products-kinds">
             <ul>
-                <?php foreach ($kinds as $key => $kind) { ?>
-                    <li <?php echo $key == 0 ? 'class="current"' : ''; ?> data-kind="<?php echo $kind['id']?>"><span class="arrow"></span><?php echo $kind['name']?></li>
+                <?php foreach ($categories as $key => $category) { ?>
+                    <li <?php echo $key == 0 ? 'class="current"' : ''; ?> data-kind="<?php echo $category['id']?>"><span class="arrow"></span><?php echo $category['title']?></li>
                 <?php } ?>
             </ul>
         </div>
