@@ -1,6 +1,7 @@
 <?php
 
 $categories = $this->categories;
+$products = $this->products;
 
 $slides = array(
     array(
@@ -16,35 +17,6 @@ $slides = array(
         'description' => '333'
     ),
 );
-
-$products = array(
-    array(
-        'id' => 'product',                 //產品id 同時也是圖片id
-        'name' => 'ProductName01',          //產品名稱
-        'description' => 'Super.........'   //產品敘述
-    ),
-    array(
-        'id' => 'product',                 //產品id 同時也是圖片id
-        'name' => 'ProductName01',          //產品名稱
-        'description' => 'Super.........'   //產品敘述
-    ),
-    array(
-        'id' => 'product',                 //產品id 同時也是圖片id
-        'name' => 'ProductName01',          //產品名稱
-        'description' => 'Super.........'   //產品敘述
-    ),
-    array(
-        'id' => 'product',                 //產品id 同時也是圖片id
-        'name' => 'ProductName01',          //產品名稱
-        'description' => 'Super.........'   //產品敘述
-    ),
-    array(
-        'id' => 'product',                 //產品id 同時也是圖片id
-        'name' => 'ProductName01',          //產品名稱
-        'description' => 'Super.........'   //產品敘述
-    ),
-);
-
 
 ?>
 
@@ -96,19 +68,19 @@ $products = array(
     <div class="products">
         <div class="products-kinds">
             <ul>
-                <?php foreach ($categories as $key => $category) { ?>
+                <?php foreach ($categories as $key => $category): ?>
                     <li <?php echo $key == 0 ? 'class="current"' : ''; ?> data-kind="<?php echo $category['id']?>"><span class="arrow"></span><?php echo $category['title']?></li>
-                <?php } ?>
+                <?php endforeach; ?>
             </ul>
         </div>
         <div class="product-container">
-            <?php foreach ($products as $product) { ?>
+            <?php foreach ($products as $product): ?>
             <div class="product-item">
-                <img src="/img/<?php echo $product['id']; ?>.jpg">
-                <div class="product-name"><?php echo $product['name']; ?></div>
+                <img src="/upload/<?php echo $product['pic']; ?>">
+                <div class="product-name"><?php echo $product['title']; ?></div>
                 <div class="product-describe"><?php echo $product['description']; ?></div>
             </div>
-            <?php } ?>
+            <?php endforeach; ?>
         </div>
         <div class="product-detail">
             <div class="product-detail-container">

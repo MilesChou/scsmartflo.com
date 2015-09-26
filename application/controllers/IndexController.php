@@ -13,5 +13,6 @@ class IndexController extends Zend_Controller_Action
         $productService = new Application_Service_Product();
 
         $this->view->categories = $productService->getCategory()->toArray();
+        $this->view->products = $productService->getProducts($this->view->categories[0]['id'])->toArray();
     }
 }
