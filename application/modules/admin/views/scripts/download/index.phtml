@@ -1,9 +1,23 @@
-<?php var_dump($this->downloads->toArray()) ?>
+<?php
+$downloads = $this->downloads->toArray();
+?>
 
-<dev>Delete:</dev>
-<?php foreach ($this->downloads as $download) : ?>
-    <div><a href="/admin/download/del/id/<?php echo $download['id']; ?>"><?php echo $download['title'] ?></a></div>
-<?php endforeach; ?>
+<table>
+    <thead>
+    <tr>
+        <td>標題</td>
+        <td>刪除</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($downloads as $download): ?>
+        <tr>
+            <td><?php echo $download['title'] ?></td>
+            <td><a href="/admin/download/del/id/<?php echo $download['id']; ?>">刪除</a></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 
 <div>新增</div>
 <form method="post" enctype="multipart/form-data" action="/admin/download/add">
