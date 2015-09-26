@@ -24,6 +24,7 @@ foreach ($this->category->toArray() as $item) {
         <td><?php echo $product['title'] ?></td>
         <td><img src="/upload/<?php echo $product['pic'] ?>"></td>
         <td><?php echo $product['description'] ?></td>
+        <td><a href="/admin/product/del/id/<?php echo $product['id']; ?>">刪除</a></td>
     </tr>
     <?php endforeach; ?>
     </tbody>
@@ -42,14 +43,22 @@ foreach ($this->category->toArray() as $item) {
     <input type="submit"/>
 </form>
 
-<?php var_dump($categories) ?>
-
-<dev>Delete Category:</dev>
-<?php foreach ($this->category as $categories) : ?>
-    <div>
-        <a href="/admin/product/del-category/id/<?php echo $categories['id']; ?>"><?php echo $categories['title'] ?></a>
-    </div>
-<?php endforeach; ?>
+<table>
+    <thead>
+    <tr>
+        <td>標題</td>
+        <td>刪除</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($categories as $category): ?>
+        <tr>
+            <td><?php echo $category['title'] ?></td>
+            <td><a href="/admin/product/del-category/id/<?php echo $category['id']; ?>">刪除</a></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 
 <div>Add category</div>
 <form method="post" action="/admin/product/add-category">
