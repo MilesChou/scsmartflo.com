@@ -11,5 +11,21 @@ class Admin_AboutController extends Zend_Controller_Action
     public function indexAction()
     {
         $aboutService = new Application_Service_About();
+
+        $this->view->description = $aboutService->getDescription();
+    }
+
+    public function saveAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $description = $this->getRequest()->getParam('description');
+
+        $aboutService = new Application_Service_About();
+        $aboutService->setDescription($description);
+        $aboutService->save();
+
+        $this->redirect('/admin/about');
     }
 }

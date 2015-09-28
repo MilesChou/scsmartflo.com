@@ -9,6 +9,5 @@ class AboutController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $aboutService = new Application_Service_About();
     }
 }
