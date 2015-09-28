@@ -1,5 +1,6 @@
 <?php
 
+$sliderShows = $this->sliderShows;
 $categories = $this->categories;
 $products = $this->products;
 
@@ -44,12 +45,12 @@ $slides = array(
 <div class="container">
     <div class="intro">
         <div class="intro-carousel">
-            <?php foreach ($slides as $key => $slide) { ?>
+            <?php foreach ($sliderShows as $key => $slide): ?>
             <div class="intro-content<?php echo $key == 0 ? ' current' : ''; ?>">
-                <img src="/img/<?php echo $slide['bg']; ?>.jpg">
+                <img src="/upload/<?php echo $slide['pic']; ?>">
                 <h3><?php echo $slide['description']; ?></h3>
             </div>
-            <?php } ?>
+            <?php endforeach; ?>
         </div>
         <div class="next-btn">
             <i class="fa fa-angle-left"></i>

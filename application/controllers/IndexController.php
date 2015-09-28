@@ -11,9 +11,9 @@ class IndexController extends Zend_Controller_Action
     {
         $homeService = new Application_Service_Home();
         $productService = new Application_Service_Product();
-
         $aboutService = new Application_Service_About();
 
+        $this->view->sliderShows = $homeService->getSliderShows();
         $this->view->aboutDescription = $aboutService->getDescription();
         $this->view->aboutTitle = $aboutService->getTitle();
         $this->view->categories = $productService->getCategory()->toArray();
