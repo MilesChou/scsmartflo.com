@@ -20,6 +20,7 @@ class Application_Service_About
         $this->model = new Application_Model_About();
         $this->data = array(
             'cover' => $this->model->getCover(),
+            'title' => $this->model->getTitle(),
             'description' => $this->model->getDescription(),
             'pics' => $this->model->getPics(),
             'picDescription' => $this->model->getPicDescription(),
@@ -43,7 +44,15 @@ class Application_Service_About
     }
 
     /**
-     * @param $cover
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->data['title'];
+    }
+
+    /**
+     * @param string $cover
      */
     public function setCover($cover)
     {
@@ -52,12 +61,21 @@ class Application_Service_About
     }
 
     /**
-     * @param $description
+     * @param string $description
      */
     public function setDescription($description)
     {
         $this->data['description'] = $description;
         $this->model->setDescription($description);
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->data['title'] = $title;
+        $this->model->setTitle($title);
     }
 
     public function save()

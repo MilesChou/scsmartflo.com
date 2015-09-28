@@ -31,9 +31,10 @@ class Application_Model_About
         if ($this->data === null) {
             $this->data = array(
                 'cover' => '',
-                'description' => '',
+                'description' => 'We are Scsmartflo',
                 'pics' => '',
                 'picDescription' => '',
+                'title' => 'Scsmartflo',
                 'email' => '',
             );
 
@@ -93,6 +94,16 @@ class Application_Model_About
     }
 
     /**
+     * 取得附圖文字說明
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->data['title'];
+    }
+
+    /**
      * 儲存大圖顯示的檔案
      *
      * @param string $cover
@@ -131,6 +142,16 @@ class Application_Model_About
     public function setPicDescription($description)
     {
         $this->data['picDescription'] = $description;
+    }
+
+    /**
+     * 取得附圖文字說明
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->data['title'] = $title;
     }
 
     /**
