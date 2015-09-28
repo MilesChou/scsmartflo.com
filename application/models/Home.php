@@ -30,45 +30,37 @@ class Application_Model_Home
 
         if ($this->data === null) {
             $this->data = array(
-                'cover' => '',
-                'description' => '',
-                'pics' => '',
-                'picDescription' => '',
-                'email' => '',
+                'sliderShow' => array(),
             );
 
             $this->save();
         }
     }
 
-    public function addSliderShow()
-    {
-        // TODO: Implement it
-    }
-
-    public function delSliderShow()
-    {
-        // TODO: Implement it
-    }
-
     /**
-     * 取得文字說明
-     *
-     * @return string
+     * @param string $file
+     * @param string $description
      */
-    public function getDescription()
+    public function addSliderShow($file, $description)
     {
-        // TODO: Implement it
+        $this->data['sliderShow']['pic'] = $file;
+        $this->data['sliderShow']['description'] = $description;
     }
 
     /**
-     * 取得幻燈片檔案位置
-     *
+     * @param int $index
+     */
+    public function delSliderShow($index)
+    {
+        unset($this->data['sliderShow'][$index]);
+    }
+
+    /**
      * @return array
      */
-    public function getSliderShow()
+    public function getSliderShows()
     {
-        // TODO: Implement it
+        return $this->data['sliderShow'];
     }
 
     /**
@@ -76,15 +68,8 @@ class Application_Model_Home
      */
     public function save()
     {
+        $this->data = array_keys($this->data);
         $this->configRow->setConfig(self::CONFIG_KEY, $this->data);
         $this->configRow->save();
-    }
-
-    /**
-     * 設定文字說明
-     */
-    public function setDescription()
-    {
-        // TODO: Implement it
     }
 }
