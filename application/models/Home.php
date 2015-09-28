@@ -43,8 +43,10 @@ class Application_Model_Home
      */
     public function addSliderShow($file, $description)
     {
-        $this->data['sliderShow']['pic'] = $file;
-        $this->data['sliderShow']['description'] = $description;
+        $this->data['sliderShow'][] = array(
+            'pic' => $file,
+            'description' => $description,
+        );
     }
 
     /**
@@ -68,7 +70,7 @@ class Application_Model_Home
      */
     public function save()
     {
-        $this->data = array_keys($this->data);
+        $this->data['sliderShow'] = array_values($this->data['sliderShow']);
         $this->configRow->setConfig(self::CONFIG_KEY, $this->data);
         $this->configRow->save();
     }
