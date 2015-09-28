@@ -38,7 +38,9 @@ class Api_V1Controller extends Zend_Controller_Action
      */
     public function getProductAction()
     {
-        $productService = new Application_Service_Product();
+        $category = $this->getRequest()->getParam('category', null);
+
+        $productService = new Application_Service_Product($category);
         $data = $productService->getProducts();
 
         $this->getResponse()->setBody(json_encode($data->toArray()));
