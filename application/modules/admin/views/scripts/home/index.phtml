@@ -2,28 +2,55 @@
 $sliderShows = $this->sliderShows;
 ?>
 
-<table>
-    <thead>
-    <tr>
-        <td>圖片</td>
-        <td>說明</td>
-        <td>刪除</td>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($sliderShows as $index => $sliderShow): ?>
-        <tr>
-            <td><img src="/upload/<?php echo $sliderShow['pic'] ?>" /></td>
-            <td><?php echo $sliderShow['description'] ?></td>
-            <td><a href="/admin/home/del/id/<?php echo $index; ?>">刪除</a></td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
+<div class="panel panel-default">
+    <div class="panel-heading">新增幻燈片及說明</div>
+    <div class="panel-body">
+        <form id="form-download" class="form-horizontal" method="post" enctype="multipart/form-data" action="/admin/home/add">
+            <div class="form-group">
+                <label for="title" class="control-label col-sm-2">Image</label>
+                <div class="col-sm-4">
+                    <input type="file" name="pic"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="title" class="control-label col-sm-2">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" name="description"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
-<div>新增</div>
-<form method="post" enctype="multipart/form-data" action="/admin/home/add">
-    Pic: <input type="file" name="pic"/><br>
-    Description: <input type="text" name="description"/><br>
-    <input type="submit"/>
-</form>
+<div class="panel panel-default">
+    <div class="panel-heading">目前幻燈片</div>
+    <div class="panel-body">
+        <?php foreach ($sliderShows as $index => $sliderShow): ?>
+            <?php
+            if ($index % 4 == 0):
+                $isClose = false;
+            ?>
+                <div class="row">
+            <?php endif; ?>
+                <div class="col-sm-3" style="overflow: hidden;">
+                    <em><?php echo $sliderShow['description'] ?></em>
+                    <a href="#" class="thumbnail">
+                        <img src="/upload/<?php echo $sliderShow['pic'] ?>">
+                    </a>
+                    <a class="btn btn-danger pull-right" href="/admin/home/del/id/<?php echo $index; ?>">刪除</a>
+                </div>
+            <?php
+            if ($index % 4 === 3):
+                $isClose = true;
+            ?>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <?php if (!$isClose) echo "</div>"; ?>
+    </div>
+</div>
