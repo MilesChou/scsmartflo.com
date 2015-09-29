@@ -59,8 +59,7 @@ class Application_Service_Download
     /**
      * @return Zend_Db_Table_Rowset_Abstract
      */
-    public
-    function getDownloads()
+    public function getDownloads()
     {
         return $this->model->getDownload();
     }
