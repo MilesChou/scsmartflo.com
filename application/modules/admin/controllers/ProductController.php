@@ -29,6 +29,8 @@ class Admin_ProductController extends Zend_Controller_Action
 
         $productService = new Application_Service_Product();
         $productService->addProduct($request, $file);
+
+        $this->redirect('/admin/product');
     }
 
     public function updAction()
@@ -42,6 +44,8 @@ class Admin_ProductController extends Zend_Controller_Action
 
         $productService = new Application_Service_Product();
         $productService->addProduct($id, $request, $file);
+
+        $this->redirect('/admin/product');
     }
 
     public function delAction()
@@ -54,6 +58,8 @@ class Admin_ProductController extends Zend_Controller_Action
 
         $productService = new Application_Service_Product();
         $productService->delProduct($id);
+
+        $this->redirect('/admin/product');
     }
 
     public function addCategoryAction()
