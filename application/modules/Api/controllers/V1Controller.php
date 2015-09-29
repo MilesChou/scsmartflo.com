@@ -16,6 +16,7 @@ class Api_V1Controller extends Zend_Controller_Action
                 'get-category',
                 'get-product',
                 'get-download',
+                'send',
             ),
         );
 
@@ -57,12 +58,18 @@ class Api_V1Controller extends Zend_Controller_Action
         $this->getResponse()->setBody(json_encode($data->toArray()));
     }
 
+    /**
+     * Send form
+     */
     public function faqAction()
     {
-        //post[username]
-        //post[email]
-        //post[phone] *optional
-        //post[title]
-        //post[message] *optional
+        $request = $this->getRequest();
+        $username = $request->getParam('username', null);
+        $email = $request->getParam('email', null);
+        $title = $request->getParam('title', null);
+        $message = $request->getParam('message', null);
+
+        $contactService = new Application_Service_Contact();
+        $contactService->send($username, $email, $title, $message);
     }
 }

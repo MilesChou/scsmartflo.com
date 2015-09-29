@@ -5,6 +5,9 @@
  */
 class Application_Service_Contact
 {
+    const GMAIL_USERNAME = 'scsmartflo@example.com';
+    const GMAIL_PASSWORD = 'password';
+
     /**
      * @var Application_Model_Contact
      */
@@ -33,10 +36,30 @@ class Application_Service_Contact
     }
 
     /**
-     * @param array $form
+     * @param string $username
+     * @param string $email
+     * @param string $title
+     * @param string $message
      */
-    public function send($form)
+    public function send($username, $email, $title, $message)
     {
-        $this->model->sendForm($form);
+        $info = $this->model->getInfo();
+
+        $smtpHost = 'smtp.gmail.com';
+        $smtpConf = array(
+            'auth' => 'login',
+            'ssl' => 'ssl',
+            'port' => '465',
+            'username' => self::GMAIL_USERNAME,
+            'password' => self::GMAIL_PASSWORD,
+        );
+        $transport = new Zend_Mail_Transport_Smtp($smtpHost, $smtpConf);
+
+        $mail = new Zend_Mail();
+        $mail->setBodyText($message);
+        $mail->setFrom($email);
+        $mail->addTo($info['title'] . ' <' . $info['email'] . '>');
+        $mail->setSubject($title);
+        $mail->send($transport);
     }
 }
