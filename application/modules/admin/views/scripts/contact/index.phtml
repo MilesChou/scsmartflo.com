@@ -1,7 +1,54 @@
-<form method="post" action="/admin/contact/save" enctype="multipart/form-data">
-    Company Title: <input type="text" name="title" value="<?php echo $this->info['title']?>"/><br/>
-    Address: <input type="text" name="address" value="<?php echo $this->info['address']?>"/><br/>
-    Phone: <input type="text" name="phone" value="<?php echo $this->info['phone']?>"/><br/>
-    Email: <input type="text" name="email" value="<?php echo $this->info['email']?>"/><br/>
-    <input type="submit" />
+<script>
+    $(function () {
+        var $alert = $('.alert').hide();
+        var $formAbout = $('#form-contact');
+        var url = $formAbout.attr('action');
+
+        $formAbout.submit(function (e) {
+            e.preventDefault();
+            $.post(url, $formAbout.serializeArray(), function () {
+                $alert
+                    .fadeIn()
+                    .delay(3000)
+                    .fadeOut();
+            });
+        });
+    });
+</script>
+
+<form id="form-contact" class="form-horizontal" method="post" action="/admin/contact/save" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title" class="control-label col-sm-2">Company Title</label>
+        <div class="col-sm-4">
+            <input type="text" id="title" class="form-control" name="title" value="<?php echo $this->info['title']?>"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title" class="control-label col-sm-2">Address</label>
+        <div class="col-sm-10">
+            <input type="text" id="title" class="form-control" name="address" value="<?php echo $this->info['address']?>"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title" class="control-label col-sm-2">Phone</label>
+        <div class="col-sm-4">
+            <input type="text" id="title" class="form-control" name="phone" value="<?php echo $this->info['phone']?>"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="title" class="control-label col-sm-2">Email</label>
+        <div class="col-sm-4">
+            <input type="text" id="title" class="form-control" name="email" value="<?php echo $this->info['email']?>"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="alert alert-success center-block" role="alert">Edit Success</div>
+        </div>
+    </div>
 </form>
