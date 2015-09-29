@@ -8,60 +8,118 @@ foreach ($this->category->toArray() as $item) {
 }
 
 ?>
-<table>
-    <thead>
-    <tr>
-        <td>分類</td>
-        <td>標題</td>
-        <td>圖片</td>
-        <td>說明</td>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($products as $product): ?>
-    <tr>
-        <td><?php echo $categories[$product['category_id']]['title'] ?></td>
-        <td><?php echo $product['title'] ?></td>
-        <td><img src="/upload/<?php echo $product['pic'] ?>"></td>
-        <td><?php echo $product['description'] ?></td>
-        <td><a href="/admin/product/del/id/<?php echo $product['id']; ?>">刪除</a></td>
-    </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
 
-<div>新增</div>
-<form method="post" enctype="multipart/form-data" action="/admin/product/add">
-    category <select name="category">
-        <?php foreach ($categories as $category): ?>
-            <option value="<?php echo $category['id'] ?>"><?php echo $category['title'] ?></option>
-        <?php endforeach; ?>
-    </select><br>
-    Title <input type="text" name="title"/><br>
-    Desc <input type="text" name="description"/><br>
-    Pic <input type="file" name="pic"/><br>
-    <input type="submit"/>
-</form>
+<div class="panel panel-default">
+    <div class="panel-heading">新增產品分類</div>
+    <div class="panel-body">
+        <form class="form-inline" method="post" action="/admin/product/add-category">
+            <div class="form-group">
+                <label for="product-kind" class="control-label col-sm-2">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" id="product-kind"  class="form-control" name="title">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">新增</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
-<table>
-    <thead>
-    <tr>
-        <td>標題</td>
-        <td>刪除</td>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($categories as $category): ?>
-        <tr>
-            <td><?php echo $category['title'] ?></td>
-            <td><a href="/admin/product/del-category/id/<?php echo $category['id']; ?>">刪除</a></td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
 
-<div>Add category</div>
-<form method="post" action="/admin/product/add-category">
-    Title <input type="text" name="title"/></br>
-    <input type="submit"/>
-</form>
+<div class="panel panel-default">
+    <div class="panel-heading">目前產品分類</div>
+    <div class="panel-body">
+        <ul class="list-group" style="margin-top: 20px;">
+            <?php foreach ($categories as $category): ?>
+                <li class="list-group-item" style="overflow: hidden;">
+                    <em><?php echo $category['title'] ?></em>
+                    <a class="btn btn-danger pull-right" href="/admin/product/del-category/id/<?php echo $category['id']; ?>">刪除</a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">新增產品</div>
+    <div class="panel-body">
+        <form id="form-download" class="form-horizontal" method="post" enctype="multipart/form-data" action="/admin/product/add">
+
+            <div class="form-group">
+                <label for="title" class="control-label col-sm-2">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" id="title" class="form-control" name="title">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="title" class="control-label col-sm-2">Category</label>
+                <div class="col-sm-4">
+                    <select id="category" class="form-control" name="category">
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo $category['id'] ?>"><?php echo $category['title'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="control-label col-sm-2">Description</label>
+                <div class="col-sm-10">
+                    <textarea id="description" class="form-control" rows="6" name="description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pic" class="control-label col-sm-2">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" id="pic" class="form-control" name="pic">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">新增</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">現有產品</div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <?php
+            $isClose = true;
+
+            foreach ($products as $index => $product):
+                if ($index % 4 == 0) {
+                    $isClose = false;
+                    echo '<div class="row">';
+                }
+            ?>
+                <div class="col-sm-3" style="overflow: hidden;">
+                    <h6>Title: <?php echo $product['title'] ?></h6>
+                    <h5>Category: <?php echo $categories[$product['category_id']]['title'] ?></h5>
+                    <p><?php echo $product['description'] ?></p>
+                    <a href="#" class="thumbnail">
+                        <img src="/upload/<?php echo $product['pic']; ?>">
+                    </a>
+                    <a class="btn btn-danger pull-right" href="/admin/product/del/id/<?php echo $product['id']; ?>">刪除</a>
+                </div>
+                <?php
+                if ($index % 4 === 3):
+                    $isClose = true;
+                    ?>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if (!$isClose) echo "</div>"; ?>
+        </ul>
+    </div>
+</div>

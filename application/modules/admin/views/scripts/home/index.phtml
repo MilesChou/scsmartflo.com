@@ -30,13 +30,15 @@ $sliderShows = $this->sliderShows;
 <div class="panel panel-default">
     <div class="panel-heading">目前幻燈片</div>
     <div class="panel-body">
-        <?php foreach ($sliderShows as $index => $sliderShow): ?>
-            <?php
-            if ($index % 4 == 0):
+        <?php
+        $isClose = true;
+
+        foreach ($sliderShows as $index => $sliderShow):
+            if ($index % 4 == 0) {
                 $isClose = false;
-            ?>
-                <div class="row">
-            <?php endif; ?>
+                echo '<div class="row">';
+            }
+        ?>
                 <div class="col-sm-3" style="overflow: hidden;">
                     <em><?php echo $sliderShow['description'] ?></em>
                     <a href="#" class="thumbnail">

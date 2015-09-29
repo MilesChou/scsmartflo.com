@@ -14,6 +14,7 @@ $downloads = $this->downloads;
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
 <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/js/parallax.min.js"></script>
 
 <div class="navbar">
     <!--微縮選單-->
@@ -53,7 +54,7 @@ $downloads = $this->downloads;
         <p class="right">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
 
-    <div class="products">
+    <div class="products" data-parallax="scroll" data-image-src="/img/bg-products.jpg">
         <div class="products-kinds">
             <ul>
                 <?php foreach ($categories as $key => $category): ?>
@@ -87,7 +88,7 @@ $downloads = $this->downloads;
         </div>
     </div>
 
-    <div class="contact-us">
+    <div class="contact-us" data-parallax="scroll" data-image-src="/img/bg-form.jpg">
         <div class="contact-form">
             <form novalidate>
                 <div class="field">
