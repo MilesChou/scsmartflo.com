@@ -11,6 +11,10 @@ $(function () {
     var $productKindList = $('.products-kinds li');
     //聯絡我們
     var $contactUs = $('.contact-us');
+
+    //placeholder
+    $contactUs.find('.form-control').placeholder();
+
     //導覽列
     var $navbarItem = $('.navbar-item');
 
@@ -64,7 +68,7 @@ $(function () {
 
                 //img
                 $('<img/>')
-                    .attr('src', '/img/' + productData.id + '.jpg')
+                    .attr('src', '/upload/' + productData.pic)
                     .appendTo($product);
 
                 //name
@@ -119,6 +123,7 @@ $(function () {
 
     function showProductDetail ($showTarget) {
         var $productDescribe = $productDetail.find('.product-describe');
+        $productDetail.find('.product-image img').attr('src', $showTarget.find('img').attr('src'));
         $productDescribe.find('h3').text($showTarget.find('.product-name').text());
         $productDescribe.find('p').text($showTarget.find('.product-describe').text());
         $productDetail.toggle(0, function () {

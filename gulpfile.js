@@ -8,6 +8,7 @@ var files = {
         './assets/sass/*.scss'
     ],
     javascript: [
+        './assets/javascript/jquery.*.js',
         './assets/javascript/*.js'
     ]
 };

@@ -144,20 +144,12 @@ $navHeight: 60px;
         width: 45%;
         font-size: 13px;
         line-height: 20px;
-
-        &.left {
-            float: left;
-        }
-
-        &.right {
-             float: right;
-        }
     }
 }
 
 //產品分類表
 .products-kinds {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.8);
     border-top: 1px solid #333;
 
     ul {
@@ -182,11 +174,6 @@ $navHeight: 60px;
         -moz-transition: background-color 0.5s, color 0.5s;
         transition: background-color 0.5s, color 0.5s;
 
-        &:hover {
-            color: #525252;
-            background-color: #dedede;
-        }
-
         &.current {
             color: white;
             font-weight: bold;
@@ -194,6 +181,11 @@ $navHeight: 60px;
             .arrow {
                 border-bottom-color: white;
             }
+        }
+
+        &:hover:not(.current) {
+            color: #525252;
+            background-color: #dedede;
         }
     }
 
@@ -371,9 +363,65 @@ $navHeight: 60px;
     }
 }
 
+.downloads {
+    position: relative;
+
+    .download-list {
+        left: 0;
+        right: 0;
+        width: 90%;
+        margin: 50px auto;
+        ul {
+            letter-spacing: -3px;
+        }
+    }
+
+    .download-item {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 25%;
+        padding: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        position: relative;
+
+        a {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background: white;
+            color: #333;
+            border: 1px solid #8b8b8b;
+            transition: .3s;
+
+            position: relative;
+            overflow: hidden;
+
+            .fa-download {
+                font-size: 30px;
+                color: white;
+                position: absolute;
+                top: -30px;
+                right: 20px;
+                transition: .5s;
+            }
+
+            &:hover {
+                background: rgba(34, 34, 34, 0.8);
+                color: white;
+
+                .fa-download {
+                    color: #848484;
+                    top: 5px;
+                }
+            }
+        }
+    }
+}
+
 .contact-us {
-    background: url("/img/bg-form.jpg") no-repeat;
-    background-size: 100% auto;
     border-top: 1px solid #666;
     text-align: center;
 

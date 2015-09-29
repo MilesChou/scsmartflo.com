@@ -5,7 +5,6 @@ $categories = $this->categories;
 $products = $this->products;
 $contactInfo = $this->contactInfo;
 $downloads = $this->downloads;
-
 ?>
 
 
@@ -25,8 +24,8 @@ $downloads = $this->downloads;
         <ul>
             <li class="navbar-item current bg-red" data-target="intro"><a href="#">About us</a></li>
             <li class="navbar-item bg-blue" data-target="products"><a href="#">Products</a></li>
+            <li class="navbar-item bg-blue" data-target="downloads"><a href="#">Download</a></li>
             <li class="navbar-item bg-red" data-target="contact-us"><a href="#contact">Contact</a></li>
-            <li class="bg-blue"><a href="#">Download</a></li>
         </ul>
     </span>
 </div>
@@ -50,8 +49,7 @@ $downloads = $this->downloads;
 
     <div class="intro-detail">
         <h4><?php echo $this->aboutTitle ?></h4>
-        <p class="left"><?php echo $this->aboutDescription ?></p>
-        <p class="right">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p><?php echo $this->aboutDescription ?></p>
     </div>
 
     <div class="products" data-parallax="scroll" data-image-src="/img/bg-products.jpg">
@@ -86,6 +84,30 @@ $downloads = $this->downloads;
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="downloads">
+        <div class="download-list">
+            <ul>
+                <?php foreach ($downloads as $file): ?>
+                    <li class="download-item">
+                        <a target="_blank" href="/upload/<?php echo $file['file'] ;?>">
+                            <?php echo $file['title']; ?>
+                            <i class="fa fa-download"></i>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
+        <?php
+        //var_dump($sliderShows);
+        //var_dump($categories);
+        //var_dump($products);
+        //var_dump($contactInfo);
+        //var_dump($downloads);
+        ?>
+
     </div>
 
     <div class="contact-us" data-parallax="scroll" data-image-src="/img/bg-form.jpg">
