@@ -12,7 +12,6 @@ $this->aboutDescription;
 $this->aboutPic;
 ?>
 
-
 <link rel="stylesheet" href="/css/index.css">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -53,8 +52,13 @@ $this->aboutPic;
     </div>
 
     <div class="intro-detail">
-        <h4><?php echo $this->aboutTitle ?></h4>
-        <p><?php echo $this->aboutDescription ?></p>
+        <div class="intro-left">
+            <h4><?php echo $this->aboutTitle ?></h4>
+            <p><?php echo $this->aboutDescription ?></p>
+        </div>
+        <div class="intro-right">
+            <img src="/upload/<?php echo $this->aboutPic; ?>">
+        </div>
     </div>
 
     <div class="products" data-parallax="scroll" data-image-src="/img/bg-products.jpg">
@@ -115,7 +119,7 @@ $this->aboutPic;
 
     </div>
 
-    <div class="contact-us" data-parallax="scroll" data-image-src="/img/bg-form.jpg">
+    <div class="contact-us">
         <div class="contact-form">
             <form novalidate>
                 <div class="field">
