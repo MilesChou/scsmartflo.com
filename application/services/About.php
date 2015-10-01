@@ -19,20 +19,10 @@ class Application_Service_About
     {
         $this->model = new Application_Model_About();
         $this->data = array(
-            'cover' => $this->model->getCover(),
             'title' => $this->model->getTitle(),
             'description' => $this->model->getDescription(),
-            'pics' => $this->model->getPics(),
-            'picDescription' => $this->model->getPicDescription(),
+            'pic' => $this->model->getPic(),
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getCover()
-    {
-        return $this->data['cover'];
     }
 
     /**
@@ -46,18 +36,17 @@ class Application_Service_About
     /**
      * @return string
      */
-    public function getTitle()
+    public function getPic()
     {
-        return $this->data['title'];
+        return $this->data['pic'];
     }
 
     /**
-     * @param string $cover
+     * @return string
      */
-    public function setCover($cover)
+    public function getTitle()
     {
-        $this->data['cover'] = $cover;
-        $this->model->setCover($cover);
+        return $this->data['title'];
     }
 
     /**
@@ -67,6 +56,25 @@ class Application_Service_About
     {
         $this->data['description'] = $description;
         $this->model->setDescription($description);
+    }
+
+    /**
+     * @param Zend_File_Transfer_Adapter_Http $file
+     */
+    public function setPic($file)
+    {
+        $fileInfo = $file->getFileInfo();
+
+        if (isset($fileInfo['pic']) && $fileInfo['pic']['error'] == 0) {
+            $sub = substr($fileInfo['pic']['name'], -4);
+            $filename = time() . $sub;
+            $file->addFilter('Rename', array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
+            $file->receive();
+
+            $this->model->setPic($filename);
+
+            $this->data['pic'] = $filename;
+        }
     }
 
     /**
