@@ -13,6 +13,7 @@ class Application_Model_DbTable_Config extends Zend_Db_Table_Abstract
     {
         $config = array(
             Zend_Db_Table_Abstract::NAME => 'config',
+            Zend_Db_Table_Abstract::PRIMARY => 'id',
             Zend_Db_Table_Abstract::ROW_CLASS => 'Application_Model_DbTable_Row_Config',
         );
 
