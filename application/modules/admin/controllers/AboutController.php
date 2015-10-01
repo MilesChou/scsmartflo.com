@@ -31,5 +31,7 @@ class Admin_AboutController extends Zend_Controller_Action
         $aboutService->setTitle($title);
         $aboutService->setPic($file);
         $aboutService->save();
+
+        $this->redirect('/admin/about');
     }
 }
