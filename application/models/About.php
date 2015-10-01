@@ -30,37 +30,13 @@ class Application_Model_About
 
         if ($this->data === null) {
             $this->data = array(
-                'cover' => '',
-                'description' => 'We are Scsmartflo',
-                'pics' => '',
-                'picDescription' => '',
                 'title' => 'Scsmartflo',
-                'email' => '',
+                'description' => 'We are Scsmartflo',
+                'pic' => '',
             );
 
             $this->save();
         }
-    }
-
-    /**
-     * 儲存附圖
-     *
-     * @param int $index
-     */
-    public function delPic($index)
-    {
-        unset($this->data['pics'][$index]);
-        $this->data['pics'] = array_values($this->data['pics']);
-    }
-
-    /**
-     * 取得大圖顯示的檔案位置
-     *
-     * @return string
-     */
-    public function getCover()
-    {
-        return $this->data['cover'];
     }
 
     /**
@@ -74,23 +50,13 @@ class Application_Model_About
     }
 
     /**
-     * 取得附圖檔案位置
-     *
-     * @return array
-     */
-    public function getPics()
-    {
-        return $this->data['pics'];
-    }
-
-    /**
-     * 取得附圖文字說明
+     * 取得大圖顯示的檔案位置
      *
      * @return string
      */
-    public function getPicDescription()
+    public function getPic()
     {
-        return $this->data['picDescription'];
+        return $this->data['pic'];
     }
 
     /**
@@ -104,16 +70,6 @@ class Application_Model_About
     }
 
     /**
-     * 儲存大圖顯示的檔案
-     *
-     * @param string $cover
-     */
-    public function setCover($cover)
-    {
-        $this->data['cover'] = $cover;
-    }
-
-    /**
      * 儲存公司介紹
      *
      * @param string $description
@@ -124,24 +80,13 @@ class Application_Model_About
     }
 
     /**
-     * 儲存附圖
+     * 儲存大圖顯示的檔案
      *
-     * @param int $index
      * @param string $pic
      */
-    public function setPic($index, $pic)
+    public function setPic($pic)
     {
-        $this->data['pics'][$index] = $pic;
-    }
-
-    /**
-     * 儲存附圖文字說明
-     *
-     * @param string $description
-     */
-    public function setPicDescription($description)
-    {
-        $this->data['picDescription'] = $description;
+        $this->data['pic'] = $pic;
     }
 
     /**
