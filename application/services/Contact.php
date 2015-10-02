@@ -5,17 +5,32 @@
  */
 class Application_Service_Contact
 {
-    const GMAIL_USERNAME = 'scsmartflo@example.com';
-    const GMAIL_PASSWORD = 'password';
-
     /**
      * @var Application_Model_Contact
      */
     private $model;
 
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->model = new Application_Model_Contact();
+
+        $config = Zend_Controller_Front::getInstance()->getParam('bootstrap')->getOption('gmail');
+
+        $this->username = $config['username'];
+        $this->password = $config['password'];
     }
 
     /**
@@ -50,8 +65,8 @@ class Application_Service_Contact
             'auth' => 'login',
             'ssl' => 'ssl',
             'port' => '465',
-            'username' => self::GMAIL_USERNAME,
-            'password' => self::GMAIL_PASSWORD,
+            'username' => $this->username,
+            'password' => $this->password,
         );
         $transport = new Zend_Mail_Transport_Smtp($smtpHost, $smtpConf);
 
