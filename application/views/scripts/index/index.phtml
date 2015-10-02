@@ -37,8 +37,7 @@ $this->aboutPic;
     <div class="intro">
         <div class="intro-carousel">
             <?php foreach ($sliderShows as $key => $slide): ?>
-            <div class="intro-content<?php echo $key == 0 ? ' current' : ''; ?>">
-                <img src="/upload/<?php echo $slide['pic']; ?>">
+            <div class="intro-content<?php echo $key == 0 ? ' current' : ''; ?>" style="background-image: url(/upload/<?php echo $slide['pic']; ?>);">
                 <h3><?php echo $slide['description']; ?></h3>
             </div>
             <?php endforeach; ?>
@@ -71,8 +70,7 @@ $this->aboutPic;
         </div>
         <div class="product-container">
             <?php foreach ($products as $product): ?>
-            <div class="product-item">
-                <img src="/upload/<?php echo $product['pic']; ?>">
+            <div class="product-item" data-img="/upload/<?php echo $product['pic']; ?>" style="background-image: url(/upload/<?php echo $product['pic']; ?>);">
                 <div class="product-name"><?php echo $product['title']; ?></div>
                 <div class="product-describe"><?php echo $product['description']; ?></div>
             </div>
@@ -81,7 +79,7 @@ $this->aboutPic;
         <div class="product-detail">
             <div class="product-detail-container">
                 <div class="product-image">
-                    <img src="/img/product.jpg">
+                    <img src="">
                 </div>
                 <div class="product-describe">
                     <h3>I am product</h3>
@@ -139,6 +137,14 @@ $this->aboutPic;
                 </div>
                 <input type="submit" class="btn btn-default btn-submit" value="Submit"></input>
             </form>
+        </div>
+        <div class="contact-info">
+            <div class="contact-info-container">
+                <h6><?php echo $contactInfo["title"]; ?></h6>
+                <h6><?php echo $contactInfo["address"]; ?></h6>
+                <h6><?php echo $contactInfo["phone"]; ?></h6>
+                <h6><?php echo $contactInfo["email"]; ?></h6>
+            </div>
         </div>
     </div>
 </div>

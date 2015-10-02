@@ -123,7 +123,7 @@ $(function () {
 
     function showProductDetail ($showTarget) {
         var $productDescribe = $productDetail.find('.product-describe');
-        $productDetail.find('.product-image img').attr('src', $showTarget.find('img').attr('src'));
+        $productDetail.find('.product-image img').attr('src', $showTarget.data('img'));
         $productDescribe.find('h3').text($showTarget.find('.product-name').text());
         $productDescribe.find('p').text($showTarget.find('.product-describe').text());
         $productDetail.toggle(0, function () {
