@@ -43,7 +43,7 @@ class Admin_ProductController extends Zend_Controller_Action
         $file = new Zend_File_Transfer_Adapter_Http();
 
         $productService = new Application_Service_Product();
-        $productService->addProduct($id, $request, $file);
+        $productService->updProduct($id, $request, $file);
 
         $this->redirect('/admin/product');
     }

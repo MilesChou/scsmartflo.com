@@ -63,6 +63,7 @@ class Application_Service_Product
     {
         $post = $request->getParams();
         $fileInfo = $file->getFileInfo();
+        $filename = null;
 
         if (isset($fileInfo['pic']) && $fileInfo['pic']['error'] == 0) {
             $sub = substr($fileInfo['pic']['name'], -4);
@@ -70,15 +71,15 @@ class Application_Service_Product
             $file->addFilter('Rename', array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
 
             $file->receive();
-
-            $this->model->updProduct(
-                $id,
-                $post['category'],
-                $post['title'],
-                $post['description'],
-                $filename
-            );
         }
+
+        $this->model->updProduct(
+            $id,
+            $post['category'],
+            $post['title'],
+            $post['description'],
+            $filename
+        );
     }
 
     /**

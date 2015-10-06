@@ -34,6 +34,7 @@ class Application_Model_Product
 
     /**
      * @param string $title
+     *
      * @return Zend_Db_Table_Row_Abstract
      */
     public function addCategory($title)
@@ -67,6 +68,7 @@ class Application_Model_Product
 
     /**
      * @param int $id
+     *
      * @return boolean
      */
     public function delCategory($id)
@@ -89,6 +91,7 @@ class Application_Model_Product
 
     /**
      * @param int $id
+     *
      * @return null|Zend_Db_Table_Row_Abstract
      */
     public function getProduct($id)
@@ -98,6 +101,7 @@ class Application_Model_Product
 
     /**
      * @param null $category
+     *
      * @return Zend_Db_Table_Rowset_Abstract
      */
     public function getProducts($category = null)
@@ -127,10 +131,11 @@ class Application_Model_Product
      * @param int $category
      * @param string $title
      * @param string $desc
-     * @param string $pic
+     * @param string|null $pic
+     *
      * @return bool
      */
-    public function updProduct($id, $category, $title, $desc, $pic)
+    public function updProduct($id, $category, $title, $desc, $pic = null)
     {
         $row = $this->productTable->fetchRow(array('id = ?' => $id));
 
@@ -141,13 +146,17 @@ class Application_Model_Product
         $row->category_id = $category;
         $row->title = $title;
         $row->description = $desc;
-        $row->pic = $pic;
+
+        if ($pic !== null) {
+            $row->pic = $pic;
+        }
 
         $row->save();
     }
 
     /**
      * @param $id
+     *
      * @return bool
      * @throws Zend_Db_Table_Row_Exception
      */
