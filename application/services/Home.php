@@ -26,7 +26,8 @@ class Application_Service_Home
         if (isset($fileInfo['pic']) && $fileInfo['pic']['error'] == 0) {
             $sub = substr($fileInfo['pic']['name'], -4);
             $filename = time() . $sub;
-            $file->addFilter('Rename', array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
+            $file->addFilter('Rename',
+                array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
 
             $file->receive();
 
@@ -36,6 +37,34 @@ class Application_Service_Home
             );
         }
 
+        $this->model->save();
+    }
+
+    /**
+     * @param int $index
+     * @param Zend_File_Transfer_Adapter_Http $file
+     * @param string $description
+     */
+    public function updSliderShow($index, $file, $description)
+    {
+        $fileInfo = $file->getFileInfo();
+        $filename = null;
+
+        if (isset($fileInfo['pic']) && $fileInfo['pic']['error'] == 0) {
+            $sub = substr($fileInfo['pic']['name'], -4);
+            $filename = time() . $sub;
+            $file->addFilter('Rename',
+                array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
+
+            $file->receive();
+        }
+
+
+        $this->model->updSliderShow(
+            $index,
+            $description,
+            $filename
+        );
         $this->model->save();
     }
 
@@ -55,4 +84,5 @@ class Application_Service_Home
     {
         return $this->model->getSliderShows();
     }
+
 }

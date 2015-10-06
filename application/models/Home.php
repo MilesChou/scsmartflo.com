@@ -74,4 +74,18 @@ class Application_Model_Home
         $this->configRow->setConfig(self::CONFIG_KEY, $this->data);
         $this->configRow->save();
     }
+
+    /**
+     * @param int $index
+     * @param string $description
+     * @param string $filename
+     */
+    public function updSliderShow($index, $description, $filename)
+    {
+        $index = (int)$index;
+        $this->data['sliderShow'][$index] = array(
+            'pic' => $filename,
+            'description' => $description,
+        );
+    }
 }

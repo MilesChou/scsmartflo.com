@@ -29,6 +29,21 @@ class Admin_HomeController extends Zend_Controller_Action
         $this->redirect('/admin/home');
     }
 
+    public function updAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $index = $this->getRequest()->getParam('id');
+        $description = $this->getRequest()->getParam('description');
+        $file = new Zend_File_Transfer_Adapter_Http();
+
+        $homeService = new Application_Service_Home();
+        $homeService->updSliderShow($index, $file, $description);
+
+        $this->redirect('/admin/home');
+    }
+
     public function delAction()
     {
         $this->getHelper('viewRenderer')->setNoRender();
