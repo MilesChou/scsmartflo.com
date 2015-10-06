@@ -37,14 +37,25 @@ class Application_Service_Download
     /**
      * @param int $id
      * @param Zend_Controller_Request_Http $request
+     * @param Zend_File_Transfer_Adapter_Http $file
      */
-    public function updDownload($id, $request)
+    public function updDownload($id, $request, $file)
     {
         $post = $request->getParams();
+        $fileInfo = $file->getFileInfo();
+        $filename = null;
+
+        if (isset($fileInfo['file']) && $fileInfo['file']['error'] == 0) {
+            $filename = time() . $fileInfo['file']['name'];
+            $file->addFilter('Rename', array('target' => APPLICATION_PATH . '/../public/upload/' . $filename, 'overwrite' => true));
+
+            $file->receive();
+        }
 
         $this->model->updDownload(
             $id,
-            $post['title']
+            $post['title'],
+            $filename
         );
     }
 

@@ -28,6 +28,7 @@ class Application_Model_Download
     /**
      * @param string $title
      * @param string $file
+     *
      * @return Zend_Db_Table_Row_Abstract
      */
     public function addDownload($title, $file)
@@ -43,10 +44,11 @@ class Application_Model_Download
     /**
      * @param int $id
      * @param string $title
+     * @param string|null $file
      *
      * @return null|Zend_Db_Table_Row_Abstract
      */
-    public function updDownload($id, $title)
+    public function updDownload($id, $title, $file = null)
     {
         $row = $this->downloadTable->fetchRow(array('id = ?', $id));
 
@@ -55,6 +57,11 @@ class Application_Model_Download
         }
 
         $row->title = $title;
+
+        if ($file !== null) {
+            $row->file = $file;
+        }
+
         $row->save();
 
         return $row;
@@ -62,6 +69,7 @@ class Application_Model_Download
 
     /**
      * @param int $id
+     *
      * @return boolean
      */
     public function delDownload($id)

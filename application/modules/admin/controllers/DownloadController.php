@@ -39,7 +39,7 @@ class Admin_DownloadController extends Zend_Controller_Action
         $file = new Zend_File_Transfer_Adapter_Http();
 
         $downloadService = new Application_Service_Download();
-        $downloadService->updDownload($id, $request);
+        $downloadService->updDownload($id, $request, $file);
 
         $this->redirect('/admin/download');
     }
