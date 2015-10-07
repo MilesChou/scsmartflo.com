@@ -131,12 +131,8 @@ $(function () {
         $body.animate({ scrollTop: $('.' + $this.data('target')).position().top }, "slow");
     });
 
-    var $products = $('.products');
     var $introContent = $('.intro-content');
-    var $productDetail = $('.product-detail');
-    var $productItem = $('.product-item');
     var $productContainer = $('.product-container');
-    var $productDetailContainer = $productDetail.find('.product-detail-container');
     var $contactForm = $('.contact-form');
     var $form = $contactForm.find('form');
 
@@ -195,45 +191,35 @@ $(function () {
     });
 
     //預設關閉
-    $productDetail.hide().addClass('hide');
-
     $productContainer.on('click', '.product-item', function () {
         showProductDetail($(this));
     });
 
-    $productDetail
-        .on('click', '.btn-close', function () {
-            hideProductDetail();
-        })
-        .on('click', '.btn-ask', function () {
-            askProductDetail();
-        })
-        .on('click', '.product-image, .product-describe, .btn-set', function (e) {
-            e.stopPropagation();
-        })
-        .click(function () {
-            hideProductDetail();
-        });
-
-    function askProductDetail () {
-        $navbarItem.filter('[data-target=contact-us]').click();
-        var productName = $productDetail.find('.product-describe h3').text();
-        $contactForm.find('#title').val('About: ' + productName);
-    }
-
-    function hideProductDetail () {
-        $productDetail.fadeOut(500, function () {
-            $productDetail.toggleClass('hide');
-        });
-    }
-
     function showProductDetail ($showTarget) {
-        var $productDescribe = $productDetail.find('.product-describe');
-        $productDetail.find('.product-image img').attr('src', $showTarget.data('img'));
-        $productDescribe.find('h3').text($showTarget.find('.product-name').text());
-        $productDescribe.find('p').text($showTarget.find('.product-describe').text());
-        $productDetail.toggle(0, function () {
-            $productDetail.toggleClass('hide');
+        $.fancybox.open({
+            padding: 0,
+            width: 'auto',
+            height: 'auto',
+            href: '/product/get-info/' + $showTarget.data('id'),
+            type: 'ajax',
+            wrapCSS: 'product-detail',
+            closeBtn: false,
+            afterShow: function () {
+                var $productDetail = $('.product-detail');
+                $productDetail
+                    .on('click', '.btn-close', function () {
+                        $.fancybox.close()
+                    })
+                    .on('click', '.btn-ask', function () {
+                        $.fancybox.close();
+                        $navbarItem.filter('[data-target=contact-us]').click();
+                        var productName = $productDetail.find('.product-describe h3').text();
+                        $contactForm.find('#title').val('About: ' + productName);
+                    });
+            },
+            beforeClose: function () {
+                $('.product-detail').off('click');
+            }
         });
     }
 
