@@ -14,9 +14,11 @@ $this->aboutPic;
 
 <link rel="stylesheet" href="/css/index.css">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
 <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript" src="/js/parallax.min.js"></script>
 
 <div class="navbar">
@@ -70,26 +72,11 @@ $this->aboutPic;
         </div>
         <div class="product-container">
             <?php foreach ($products as $product): ?>
-            <div class="product-item" data-img="/upload/<?php echo $product['pic']; ?>" style="background-image: url(/upload/<?php echo $product['pic']; ?>);">
-                <div class="product-name"><?php echo $product['title']; ?></div>
-                <div class="product-describe"><?php echo $product['description']; ?></div>
-            </div>
+                <div class="product-item" data-id="<?php echo $product['id']; ?>" style="background-image: url(/upload/<?php echo $product['pic']; ?>);">
+                    <div class="product-name"><?php echo $product['title']; ?></div>
+                    <div class="product-describe"><?php echo $product['description']; ?></div>
+                </div>
             <?php endforeach; ?>
-        </div>
-        <div class="product-detail">
-            <div class="product-detail-container">
-                <div class="product-image">
-                    <img src="">
-                </div>
-                <div class="product-describe">
-                    <h3>I am product</h3>
-                    <p>Given a jQuery object that represents a set of DOM elements, the .eq() method constructs a new jQuery object from one element within that set. The supplied index identifies the position of this element in the set.</p>
-                </div>
-                <div class="btn-set">
-                    <div class="btn-close"><i class="fa fa-times"></i></div>
-                    <div class="btn-ask"><i class="fa fa-commenting-o"></i></div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -106,15 +93,6 @@ $this->aboutPic;
                 <?php endforeach; ?>
             </ul>
         </div>
-
-        <?php
-        //var_dump($sliderShows);
-        //var_dump($categories);
-        //var_dump($products);
-        //var_dump($contactInfo);
-        //var_dump($downloads);
-        ?>
-
     </div>
 
     <div class="contact-us">
@@ -143,7 +121,7 @@ $this->aboutPic;
                 <h6><?php echo $contactInfo["title"]; ?></h6>
                 <h6><?php echo $contactInfo["address"]; ?></h6>
                 <h6><?php echo $contactInfo["phone"]; ?></h6>
-                <h6><?php echo $contactInfo["email"]; ?></h6>
+                <h6 class="mail"><?php echo $contactInfo["email"]; ?></h6>
             </div>
         </div>
     </div>
