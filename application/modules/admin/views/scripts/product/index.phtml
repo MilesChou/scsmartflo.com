@@ -103,15 +103,46 @@ foreach ($this->category->toArray() as $item) {
                     echo '<div class="row">';
                 }
             ?>
-                <div class="col-sm-3" style="overflow: hidden;">
-                    <h6>Title: <?php echo $product['title'] ?></h6>
-                    <h5>Category: <?php echo $categories[$product['category_id']]['title'] ?></h5>
-                    <p><?php echo $product['description'] ?></p>
-                    <a href="#" class="thumbnail">
-                        <img src="/upload/<?php echo $product['pic']; ?>">
-                    </a>
-                    <a class="btn btn-danger pull-right" href="/admin/product/del/id/<?php echo $product['id']; ?>">刪除</a>
+                <div class="col-sm-3 product-info" style="overflow: hidden;">
+                    <form method="post" enctype="multipart/form-data" action="/admin/product/upd/id/<?php echo $product['id']; ?>">
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input type="text" class="form-control" name="title" value="<?php echo $product['title'] ?>"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Category</label>
+                            <select class="form-control" name="category">
+                                <?php foreach ($categories as $category):?>
+                                    <?php if ($categories[$product['category_id']]['title'] == $category['title']): ?>
+                                        <option value="<?php echo $category['id'] ?>" selected><?php echo $category['title'] ?></option>
+                                    <?php else: ?>
+                                        <option value="<?php echo $category['id'] ?>"><?php echo $category['title'] ?></option>
+                                    <?php endif ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Category</label>
+                            <textarea class="form-control" rows="6" name="description"><?php echo $product['description'] ?></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file" class="form-control modify-pic" name="pic" value="更換圖片"/>
+                        </div>
+
+                        <a href="#" class="thumbnail">
+                            <img src="/upload/<?php echo $product['pic']; ?>">
+                        </a>
+
+                        <div class="btn-group">
+                            <input type="submit" class="btn btn-primary" value="送出修改"/>
+                            <a class="btn btn-danger pull-right btn-del" href="/admin/product/del/id/<?php echo $product['id']; ?>">刪除</a>
+                        </div>
+                    </form>
                 </div>
+
                 <?php
                 if ($index % 4 === 3):
                     $isClose = true;
@@ -123,3 +154,19 @@ foreach ($this->category->toArray() as $item) {
         </ul>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $('.modify-pic').change(function () {
+            $(this).closest('.product-info')
+                .find('.thumbnail')
+                .hide();
+        });
+
+        $('.btn-del').click(function (e) {
+            if (!confirm('確認刪除？')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
