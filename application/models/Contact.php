@@ -30,6 +30,8 @@ class Application_Model_Contact
 
         if ($this->data === null) {
             $this->data = array(
+                'username' => '',
+                'password' => '',
                 'title' => '',
                 'address' => '',
                 'phone' => '',

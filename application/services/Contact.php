@@ -65,8 +65,8 @@ class Application_Service_Contact
             'auth' => 'login',
             'ssl' => 'ssl',
             'port' => '465',
-            'username' => $this->username,
-            'password' => $this->password,
+            'username' => $info['username'],
+            'password' => $info['password'],
         );
         $transport = new Zend_Mail_Transport_Smtp($smtpHost, $smtpConf);
 
