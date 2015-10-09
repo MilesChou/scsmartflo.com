@@ -1,6 +1,6 @@
 <?php
 
-class Admin_ContactController extends Zend_Controller_Action
+class Admin_PasswordController extends Zend_Controller_Action
 {
     public function init()
     {
@@ -17,9 +17,6 @@ class Admin_ContactController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $contactService = new Application_Service_Contact();
-
-        $this->view->info = $contactService->getInfo();
     }
 
     public function saveAction()
@@ -27,11 +24,11 @@ class Admin_ContactController extends Zend_Controller_Action
         $this->getHelper('viewRenderer')->setNoRender();
         $this->getHelper('layout')->disableLayout();
 
-        $params = $this->getRequest()->getParams();
+        $password = $this->getRequest()->getParam('password');
 
-        $contactService = new Application_Service_Contact();
-        $contactService->setInfo($params);
+        $authService = new Application_Service_Auth();
+        $authService->edit($password);
 
-        $this->redirect('/admin/contact');
+        $this->redirect('/admin');
     }
 }

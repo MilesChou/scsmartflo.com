@@ -23,4 +23,15 @@ class Admin_AuthController extends Zend_Controller_Action
 
         $this->redirect('/admin');
     }
+
+    public function logoutAction()
+    {
+        $this->getHelper('viewRenderer')->setNoRender();
+        $this->getHelper('layout')->disableLayout();
+
+        $authService = new Application_Service_Auth();
+        $authService->logout();
+
+        $this->redirect('/admin');
+    }
 }

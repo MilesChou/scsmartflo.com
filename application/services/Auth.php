@@ -3,7 +3,7 @@
 class Application_Service_Auth
 {
     /**
-     * @var Application_Model_About
+     * @var Application_Model_Auth
      */
     private $model;
 
@@ -48,5 +48,15 @@ class Application_Service_Auth
     public function logout()
     {
         unset($this->session->login);
+    }
+
+    /**
+     * @param string $password
+     */
+    public function edit($password)
+    {
+        $this->data['password'] = $password;
+        $this->model->setInfo($this->data);
+        $this->model->save();
     }
 }
