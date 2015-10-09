@@ -6,7 +6,7 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l
 RewriteRule ^.*$ - [NC,L]
-RewriteRule ^(css|js|img|upload)/(.*)$ public/$1/$2 [L]
+RewriteRule ^(css|js|img|upload|fancybox)/(.*)$ public/$1/$2 [L]
 
 RewriteRule ^(.*)$ index.php [NC,L]
 
