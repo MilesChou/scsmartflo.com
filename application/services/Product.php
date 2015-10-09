@@ -111,4 +111,13 @@ class Application_Service_Product
     {
         return $this->model->getProducts($category);
     }
+
+    /**
+     * @param int $id
+     * @return Zend_Db_Table_Row_Abstract
+     */
+    public function getProduct($id)
+    {
+        return $this->model->getProduct($id);
+    }
 }

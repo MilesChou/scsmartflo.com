@@ -6,10 +6,11 @@ class ProductController extends Zend_Controller_Action
     {
         //product/get-info/:id
         $this->getHelper('layout')->disableLayout();
-        $this->view->info = array(
-            "pic" => "/path/to/img",
-            "title" => "i am title",
-            "description" => "i am what i am"
-        );
+        $params = $this->getRequest()->getParams();
+
+        $productService = new Application_Service_Product();
+
+        $product = $productService->getProduct($params['id']);
+        $this->view->info = $product->toArray();
     }
 }
