@@ -39,7 +39,8 @@ $this->aboutPic;
     <div class="intro">
         <div class="intro-carousel">
             <?php foreach ($sliderShows as $key => $slide): ?>
-            <div class="intro-content<?php echo $key == 0 ? ' current' : ''; ?>" style="background-image: url(/upload/<?php echo $slide['pic']; ?>);">
+            <div class="intro-content<?php echo $key == 0 ? ' current' : ''; ?>">
+                <div class="intro-bg" style="background-image: url(/upload/<?php echo $slide['pic']; ?>);"></div>
                 <h3><?php echo $slide['description']; ?></h3>
             </div>
             <?php endforeach; ?>
