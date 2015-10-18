@@ -19,9 +19,9 @@ $navHeight: 60px;
         float: left;
         line-height: $navHeight;
         img {
-            height: $navHeight * 0.6;
-            margin-top: ($navHeight * 0.4) * 0.5;
-            margin-left: ($navHeight * 0.4) * 0.5;
+            height: $navHeight * 0.9;
+            margin-top: ($navHeight * 0.1) * 0.5;
+            margin-left: ($navHeight * 0.1) * 0.5;
         }
     }
 
@@ -181,6 +181,7 @@ $navHeight: 60px;
         font-size: 14px;
         text-align: center;
         cursor: pointer;
+        color: white;
 
         -webkit-transition: background-color 0.5s, color 0.5s;
         -moz-transition: background-color 0.5s, color 0.5s;
