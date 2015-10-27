@@ -200,7 +200,7 @@ $(function () {
             padding: 0,
             width: 'auto',
             height: 'auto',
-            href: '/product/get-info/' + $showTarget.data('id'),
+            href: '/product/get-info/id/' + $showTarget.data('id'),
             type: 'ajax',
             wrapCSS: 'product-detail',
             closeBtn: false,
