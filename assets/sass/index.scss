@@ -77,7 +77,7 @@ $navHeight: 60px;
     }
 
     .intro-bg {
-        height: 460px;
+        height: 760px;
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -248,6 +248,7 @@ $navHeight: 60px;
 
         .product-name {
             position: absolute;
+            top: 0;
             bottom: 0;
             left:0;
             right:0;
