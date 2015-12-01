@@ -2,7 +2,7 @@
 
 $themeRed: #BC0F0F;
 $themeBlue: #1616DB;
-$navHeight: 60px;
+$navHeight: 90px;
 
 //導覽列
 .navbar {
@@ -31,6 +31,7 @@ $navHeight: 60px;
 
         a {
             color: white;
+            font-size: 22px;
         }
 
         li {
@@ -94,7 +95,7 @@ $navHeight: 60px;
         bottom: 0;
         left: 0;
         right: 0;
-        font-size: 20px;
+        font-size: 18px;
         color: white;
         background-color: rgba(0, 0, 0, 0.8);
     }
@@ -178,7 +179,7 @@ $navHeight: 60px;
         color: #333;
         height: 40px;
         line-height: 40px;
-        font-size: 14px;
+        font-size: 20px;
         text-align: center;
         cursor: pointer;
         color: white;
@@ -254,6 +255,7 @@ $navHeight: 60px;
             right:0;
             text-align: center;
             padding: 10px;
+            font-size: 18px;
         }
 
         .product-describe {
