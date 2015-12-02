@@ -44,6 +44,9 @@ $(function () {
         })
         .on('afterChange', function (event, $slick, next) {
             setupCurrentCarousel(next);
+        })
+        .click(function () {
+            $('.navbar-item[data-target=products]').click();
         });
 
     function setupCurrentCarousel (idx) {
