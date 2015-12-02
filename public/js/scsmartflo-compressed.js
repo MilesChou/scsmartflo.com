@@ -150,6 +150,9 @@ $(function () {
         })
         .on('afterChange', function (event, $slick, next) {
             setupCurrentCarousel(next);
+        })
+        .click(function () {
+            $('.navbar-item[data-target=products]').click();
         });
 
     function setupCurrentCarousel (idx) {
@@ -165,7 +168,7 @@ $(function () {
             for (var i = 0, len = data.length; i < len; i++) {
                 var productData = data[i];
                 var $product = $('<div/>')
-                    .data('productId', productData.id)
+                    .data('id', productData.id)
                     .addClass('product-item');
 
                 //img
@@ -200,7 +203,7 @@ $(function () {
             padding: 0,
             width: 'auto',
             height: 'auto',
-            href: '/product/get-info/' + $showTarget.data('id'),
+            href: '/product/get-info/id/' + $showTarget.data('id'),
             type: 'ajax',
             wrapCSS: 'product-detail',
             closeBtn: false,
