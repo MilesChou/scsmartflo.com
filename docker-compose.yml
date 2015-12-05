@@ -6,8 +6,6 @@ web:
     - db
   volumes:
     - /etc/localtime:/etc/localtime:ro
-    - /conf/php.ini:/usr/local/etc/php/php.ini
-    - /var/www/html
 
 phpmyadmin:
   image: phpmyadmin
