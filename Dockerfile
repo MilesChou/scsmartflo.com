@@ -10,9 +10,11 @@ COPY composer.json ./composer.json
 COPY composer.lock ./composer.lock
 RUN composer install --no-dev --optimize-autoloader
 
+COPY conf/php.ini /usr/local/etc/php/
 COPY application ./application
 COPY public ./public
 COPY .htaccess ./.htaccess
 COPY index.php ./index.php
+RUN chown www-data:www-data -R .
 
 VOLUME ["/var/www/html/public/upload"]
