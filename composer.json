@@ -1,21 +1,24 @@
 {
     "name": "scsmartflo/web",
     "require": {
-        "zendframework/zendframework1": "1.12.15",
+        "zendframework/zendframework1": "~1.12",
         "nesbot/carbon": "~1.14",
         "monolog/monolog": "^1.17",
-        "symfony/console": "~2.7"
+        "symfony/console": "~2.7",
+        "slim/slim": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Scsmartflo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Scsmartflo\\": "tests/"
+        }
     },
     "require-dev": {
-        "codeception/codeception": "~2.1.1",
-        "phpunit/phpunit": "~4.8",
-        "phpunit/dbunit": "~1.4"
+        "codeception/codeception": "^2.2"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "MilesChou",
-            "email": "jangconan@gmail.com"
-        }
-    ]
+    "license": "MIT License"
 }

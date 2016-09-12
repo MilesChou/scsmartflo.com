@@ -1,22 +1,16 @@
 web:
-  image: scsmartflo
-  ports:
-    - 80:80
-  links:
-    - db
-  volumes:
-    - /etc/localtime:/etc/localtime:ro
-
-phpmyadmin:
-  image: phpmyadmin
+  build: .
   ports:
     - 8080:80
   links:
-    - db:mysql
+    - db
+  environment:
+    APPLICATION_ENV: production
 
 db:
   image: mariadb:10
-  volumes:
-    - /etc/localtime:/etc/localtime:ro
+  ports:
+    - 3306:3306
   environment:
     MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: default

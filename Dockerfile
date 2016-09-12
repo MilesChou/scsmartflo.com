@@ -1,20 +1,35 @@
-FROM php:5.6-apache
+FROM php:7.0-apache
 MAINTAINER MilesChou <jangconan@gmail.com>
 
-RUN apt-get update -y && apt-get install -y curl git zlib1g-dev && apt-get clean
-RUN docker-php-ext-install zip mysql mysqli pdo_mysql mbstring
-RUN a2enmod rewrite
-RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+# Install Extensions
+RUN set -xe && \
+        apt-get update && apt-get install --no-install-recommends --no-install-suggests -y \
+            zlib1g-dev \
+        && docker-php-ext-install \
+            mysqli \
+            pdo_mysql \
+            zip \
+        && rm -r /var/lib/apt/lists/*
 
-COPY composer.json ./composer.json
-COPY composer.lock ./composer.lock
-RUN composer install --no-dev --optimize-autoloader
+# Install Composer
+RUN set -xe && \
+        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+        php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+        php composer-setup.php && \
+        php -r "unlink('composer-setup.php');" && \
+        mv composer.phar /usr/local/bin/composer
+
+# Apache2 setting
+RUN set -xe && \
+        a2enmod rewrite && \
+        sed -i "s/DocumentRoot.*/DocumentRoot \/var\/www\/html\/public/g" /etc/apache2/sites-enabled/000-default.conf
 
 COPY conf/php.ini /usr/local/etc/php/
-COPY application ./application
-COPY public ./public
-COPY .htaccess ./.htaccess
-COPY index.php ./index.php
-RUN chown www-data:www-data -R .
 
+COPY composer.json ./
+COPY composer.lock ./
+RUN composer install --no-dev --optimize-autoloader
+COPY . ./
+
+RUN chown www-data:www-data -R .
 VOLUME ["/var/www/html/public/upload"]
