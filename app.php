@@ -31,6 +31,24 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
     return $response;
 });
 
+ENABLE_REFACTORING and $app->get('/api/v1/get-product', function (Request $request, Response $response) {
+    // Run Zend Framework application
+    $application = new Zend_Application(
+        APPLICATION_ENV,
+        APPLICATION_PATH . '/configs/application.ini'
+    );
+    $application->bootstrap();
+
+    $category = $request->getAttribute('kind');
+    $productService = new Application_Service_Product();
+    $data = $productService->getProducts($category);
+
+    $body = $response->getBody();
+    $body->write(json_encode($data->toArray()));
+
+    return $response->withHeader('Content-type', 'application/json');
+});
+
 ENABLE_REFACTORING and $app->get('/api/v1', function (Request $request, Response $response) {
     $data = [
         'path' => '/api/v1',
