@@ -27,6 +27,10 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/api/v1', function (Request $request, Response $response) {
+    return $response;
+});
+
 $app->any('/{all:.*}', function (Request $request, Response $response) {
     ob_start();
 
