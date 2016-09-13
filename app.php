@@ -28,7 +28,19 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 });
 
 $app->get('/api/v1', function (Request $request, Response $response) {
-    return $response;
+    $data = [
+        'path' => '/api/v1',
+        'available' => [
+            'get-category',
+            'get-product',
+            'get-download',
+            'send',
+        ],
+    ];
+    $body = $response->getBody();
+    $body->write(json_encode($data));
+
+    return $response->withHeader('Content-type', 'application/json');
 });
 
 $app->any('/{all:.*}', function (Request $request, Response $response) {
