@@ -4,8 +4,7 @@ web:
     - 8080:80
   links:
     - db
-  environment:
-    APPLICATION_ENV: production
+  env_file: .env
 
 db:
   image: mariadb:10

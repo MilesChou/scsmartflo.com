@@ -4,6 +4,10 @@ declare(strict_types=1);
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
+
+defined('ENABLE_REFACTORING')
+    || define('ENABLE_REFACTORING', (boolean) getenv('ENABLE_REFACTORING'));
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/application'));
@@ -27,7 +31,7 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
     return $response;
 });
 
-$app->get('/api/v1', function (Request $request, Response $response) {
+ENABLE_REFACTORING and $app->get('/api/v1', function (Request $request, Response $response) {
     $data = [
         'path' => '/api/v1',
         'available' => [
