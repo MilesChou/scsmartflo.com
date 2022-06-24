@@ -2,8 +2,6 @@
 
 /**
  * 設定資料
- *
- * @author Miles
  */
 class Application_Model_DbTable_Config extends Zend_Db_Table_Abstract
 {

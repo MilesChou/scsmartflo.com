@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Class Application_Service_Contact
- */
 class Application_Service_Contact
 {
     /**

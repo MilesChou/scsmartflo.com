@@ -2,8 +2,6 @@
 
 /**
  * Product model
- *
- * @author Miles
  */
 class Application_Model_Product
 {

@@ -2,8 +2,6 @@
 
 /**
  * Home model
- *
- * @author Miles
  */
 class Application_Model_Home
 {

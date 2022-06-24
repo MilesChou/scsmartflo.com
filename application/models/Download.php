@@ -2,8 +2,6 @@
 
 /**
  * Download model
- *
- * @author Miles
  */
 class Application_Model_Download
 {

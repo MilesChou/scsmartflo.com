@@ -2,8 +2,6 @@
 
 /**
  * About model
- *
- * @author Miles
  */
 class Application_Model_About
 {

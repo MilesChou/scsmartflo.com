@@ -1,21 +1,6 @@
 {
-    "name": "scsmartflo/web",
     "require": {
-        "zendframework/zendframework1": "1.12.15",
-        "nesbot/carbon": "~1.14",
-        "monolog/monolog": "^1.17",
-        "symfony/console": "~2.7"
+        "zendframework/zendframework1": "1.12.15"
     },
-    "require-dev": {
-        "codeception/codeception": "~2.1.1",
-        "phpunit/phpunit": "~4.8",
-        "phpunit/dbunit": "~1.4"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "MilesChou",
-            "email": "jangconan@gmail.com"
-        }
-    ]
+    "license": "MIT"
 }
